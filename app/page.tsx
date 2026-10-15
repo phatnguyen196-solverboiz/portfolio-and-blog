@@ -35,12 +35,14 @@ export default function Home() {
       <div className="wrap">
         <section className="home-hero" aria-labelledby="home-title">
           <div>
-            <p className="eyebrow"><Bi en="Portfolio & technical writing" vi="Portfolio & chia sẻ kỹ thuật" /></p>
-            <h1 id="home-title" className="hero-title serif">
+            <p className="eyebrow animate-fade-in-up" style={{ animationDelay: "0.1s" }}>
+              <Bi en="Portfolio & technical writing" vi="Portfolio & chia sẻ kỹ thuật" />
+            </p>
+            <h1 id="home-title" className="hero-title serif animate-fade-in-up" style={{ animationDelay: "0.2s" }}>
               Nguyen<br />Trong <em>Phat.</em>
             </h1>
           </div>
-          <div className="hero-aside">
+          <div className="hero-aside animate-fade-in-up" style={{ animationDelay: "0.4s" }}>
             <p>
               <Bi
                 en="I build software, document what I learn, and share the decisions behind the work."
@@ -54,14 +56,19 @@ export default function Home() {
         </section>
 
         <section className="home-index" aria-labelledby="explore-title">
-          <div className="index-head">
+          <div className="index-head animate-fade-in-up" style={{ animationDelay: "0.5s" }}>
             <h2 id="explore-title" className="eyebrow" style={{ margin: 0 }}>
               <Bi en="Explore" vi="Khám phá" />
             </h2>
             <span className="muted"><Bi en="Four separate spaces" vi="Bốn trang riêng biệt" /></span>
           </div>
-          {destinations.map((item) => (
-            <Link href={item.href} className="index-row" key={item.number}>
+          {destinations.map((item, idx) => (
+            <Link
+              href={item.href}
+              className="index-row animate-fade-in-up"
+              key={item.number}
+              style={{ animationDelay: `${0.6 + idx * 0.1}s` }}
+            >
               <span className="index-number">{item.number}</span>
               <span className="index-title"><Bi en={item.title.en} vi={item.title.vi} /></span>
               <span className="index-description"><Bi en={item.description.en} vi={item.description.vi} /></span>
@@ -69,7 +76,7 @@ export default function Home() {
             </Link>
           ))}
         </section>
-        <div className="home-outro">
+        <div className="home-outro animate-fade-in-up" style={{ animationDelay: "1.0s" }}>
           <span><Bi en="Built to grow with the work." vi="Một không gian sẽ phát triển cùng công việc." /></span>
           <span>Nguyen Trong Phat · 2026</span>
         </div>

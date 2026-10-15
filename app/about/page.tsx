@@ -6,7 +6,7 @@ export default function AboutPage() {
   return (
     <SiteShell>
       <div className="wrap">
-        <header className="page-head">
+        <header className="page-head animate-fade-in-up" style={{ animationDelay: "0.1s" }}>
           <p className="eyebrow"><Bi en="01 / About" vi="01 / Giới thiệu" /></p>
           <h1 className="page-title"><Bi en="About / CV" vi="Giới thiệu / CV" /></h1>
           <p className="page-intro">
@@ -17,7 +17,7 @@ export default function AboutPage() {
           </p>
         </header>
         <div className="page-content">
-          <section className="editorial-grid" aria-labelledby="about-heading">
+          <section className="editorial-grid animate-fade-in-up" aria-labelledby="about-heading" style={{ animationDelay: "0.2s" }}>
             <div>
               <h2 id="about-heading" className="section-label"><Bi en="In brief" vi="Đôi nét" /></h2>
             </div>
@@ -39,7 +39,7 @@ export default function AboutPage() {
 
           <hr className="rule" style={{ margin: "56px 0 46px" }} />
 
-          <section className="editorial-grid" aria-labelledby="cv-heading">
+          <section className="editorial-grid animate-fade-in-up" aria-labelledby="cv-heading" style={{ animationDelay: "0.3s" }}>
             <div>
               <h2 id="cv-heading" className="section-label"><Bi en="CV / Overview" vi="CV / Tổng quan" /></h2>
             </div>

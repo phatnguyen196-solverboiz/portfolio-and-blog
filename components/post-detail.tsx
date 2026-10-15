@@ -7,17 +7,52 @@ export function PostDetail({ post }: { post: Post }) {
   const tags = safeList(post.tags);
   return (
     <article className="wrap article-page">
-      <Link className="article-back" href={post.kind === "blog" ? "/blog" : "/projects"}>
+      <Link
+        className="article-back animate-fade-in-up"
+        href={post.kind === "blog" ? "/blog" : "/projects"}
+        style={{ animationDelay: "0.05s" }}
+      >
         ← <Bi en="Back to all posts" vi="Trở lại danh sách" />
       </Link>
-      <header className="article-head">
-        <p className="eyebrow"><Bi en={post.kind === "blog" ? "Technical Writing" : "Projects"} vi={post.kind === "blog" ? "Chia sẻ kỹ thuật" : "Dự án"} /> · {new Date(post.createdAt).toLocaleDateString("en-GB")}</p>
-        <h1 className="page-title"><Bi en={post.titleEn} vi={post.titleVi || post.titleEn} /></h1>
-        <p className="page-intro"><Bi en={post.excerptEn} vi={post.excerptVi || post.excerptEn} /></p>
-        {tags.length ? <div className="tag-list">{tags.map(tag => <span key={tag}>{tag}</span>)}</div> : null}
+      <header className="article-head animate-fade-in-up" style={{ animationDelay: "0.15s" }}>
+        <p className="eyebrow">
+          <Bi
+            en={post.kind === "blog" ? "Technical Writing" : "Projects"}
+            vi={post.kind === "blog" ? "Chia sẻ kỹ thuật" : "Dự án"}
+          />{" "}
+          · {new Date(post.createdAt).toLocaleDateString("en-GB")}
+        </p>
+        <h1 className="page-title">
+          <Bi en={post.titleEn} vi={post.titleVi || post.titleEn} />
+        </h1>
+        <p className="page-intro">
+          <Bi en={post.excerptEn} vi={post.excerptVi || post.excerptEn} />
+        </p>
+        {tags.length ? (
+          <div className="tag-list">
+            {tags.map((tag) => (
+              <span key={tag}>{tag}</span>
+            ))}
+          </div>
+        ) : null}
       </header>
-      {images.length ? <div className="article-gallery">{images.map((key, index) => <img key={key} src={`/api/media/${key}`} alt={`${post.titleEn}, image ${index + 1}`} loading={index ? "lazy" : "eager"} />)}</div> : null}
-      <div className="article-body"><div className="lang-en">{post.bodyEn}</div><div className="lang-vi">{post.bodyVi || post.bodyEn}</div></div>
+      {images.length ? (
+        <div className="article-gallery animate-fade-in-up" style={{ animationDelay: "0.25s" }}>
+          {images.map((key, index) => (
+            <img
+              key={key}
+              src={`/api/media/${key}`}
+              alt={`${post.titleEn}, image ${index + 1}`}
+              loading={index ? "lazy" : "eager"}
+              style={{ borderRadius: 8, transition: "transform 0.4s ease" }}
+            />
+          ))}
+        </div>
+      ) : null}
+      <div className="article-body animate-fade-in-up" style={{ animationDelay: "0.35s" }}>
+        <div className="lang-en">{post.bodyEn}</div>
+        <div className="lang-vi">{post.bodyVi || post.bodyEn}</div>
+      </div>
     </article>
   );
 }

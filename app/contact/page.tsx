@@ -11,7 +11,7 @@ export default function ContactPage() {
   return (
     <SiteShell>
       <div className="wrap">
-        <header className="page-head">
+        <header className="page-head animate-fade-in-up" style={{ animationDelay: "0.1s" }}>
           <p className="eyebrow"><Bi en="04 / Contact" vi="04 / Liên hệ" /></p>
           <h1 className="page-title"><Bi en="Let's connect." vi="Kết nối nhé." /></h1>
           <p className="page-intro">
@@ -22,17 +22,18 @@ export default function ContactPage() {
           </p>
         </header>
         <div className="contact-main">
-          <p className="contact-lead">
+          <p className="contact-lead animate-fade-in-up" style={{ animationDelay: "0.2s" }}>
             <Bi en="Good conversations often start with a simple note." vi="Một cuộc trò chuyện hay thường bắt đầu bằng một lời nhắn." />
           </p>
           <div className="contact-list">
-            {contacts.map((contact) => (
+            {contacts.map((contact, idx) => (
               <a
-                className="contact-row"
+                className="contact-row animate-fade-in-up"
                 href={contact.href}
                 key={contact.label}
                 target={contact.href.startsWith("mailto:") ? undefined : "_blank"}
                 rel={contact.href.startsWith("mailto:") ? undefined : "noopener noreferrer"}
+                style={{ animationDelay: `${0.3 + idx * 0.1}s` }}
               >
                 <span className="label">{contact.label}</span>
                 <span className="value">{contact.text}</span>
