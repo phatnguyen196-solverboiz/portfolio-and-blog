@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#f7f7f3">
+    <meta name="description" content="Nguyen Trong Phat — projects, technical notes, and a background connecting software, data, and interactive systems.">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Nguyen Trong Phat — Portfolio">
+    <meta property="og:description" content="Selected work across learning tools, automation, and interactive systems.">
+    <title>Nguyen Trong Phat — Portfolio</title>
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="styles.css">
+    <script src="app.js" defer></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header">
+      <div class="container header-inner">
+        <a class="brand" href="#top" aria-label="Nguyen Trong Phat, back to top">
+          <span class="brand-mark">np<span class="brand-dot">.</span></span>
+          <span class="brand-name">Nguyen Trong Phat</span>
+        </a>
+        <nav class="primary-nav" aria-label="Primary navigation">
+          <a href="#about" data-i18n="navAbout">About / CV</a>
+          <a href="#projects" data-i18n="navProjects">Projects</a>
+          <a href="#notes" data-i18n="navNotes">Blog / Notes</a>
+          <a href="#contact" data-i18n="navContact">Contact</a>
+        </nav>
+        <button id="language-toggle" class="language-toggle" type="button" aria-label="Switch to Vietnamese" title="Switch language">
+          <span class="language-current">EN</span><span class="language-divider">/</span><span class="language-next">VI</span>
+        </button>
+      </div>
+    </header>
+
+    <main id="main">
+      <section id="top" class="hero container" aria-labelledby="hero-title">
+        <div class="hero-copy">
+          <p class="eyebrow"><span class="eyebrow-line"></span><span data-i18n="heroEyebrow">PORTFOLIO · 2026</span></p>
+          <h1 id="hero-title"><span data-i18n="heroLine1">Thoughtful software,</span><br><em data-i18n="heroLine2">built to be useful.</em></h1>
+          <p class="hero-lead" data-i18n="heroLead">I’m Nguyen Trong Phat. I build learning tools, practical automations, and interactive systems at the meeting point of software and the physical world.</p>
+          <div class="hero-actions">
+            <a class="button button-primary" href="#projects"><span data-i18n="seeProjects">Explore projects</span><span aria-hidden="true">↗</span></a>
+            <a class="text-link" href="#about"><span data-i18n="moreAbout">More about me</span><span aria-hidden="true">↓</span></a>
+          </div>
+          <p class="hero-footnote"><span class="pulse" aria-hidden="true"></span><span data-i18n="heroFootnote">Curious about useful, well-crafted technology</span></p>
+        </div>
+        <div class="hero-art" aria-label="Illustration of connected software ideas">
+          <div class="art-grid" aria-hidden="true"></div>
+          <div class="art-window art-window-main" aria-hidden="true">
+            <div class="art-topbar"><span class="art-dots"><i></i><i></i><i></i></span><span>BUILD / REFINE</span></div>
+            <div class="art-window-body">
+              <span class="art-small-label" data-i18n="artLabel">01 — CURIOSITY INTO SYSTEMS</span>
+              <div class="art-rule"></div>
+              <div class="art-display"><span data-i18n="artLine1">Ideas</span><span class="art-asterisk">✳</span><br><span data-i18n="artLine2">made tangible.</span></div>
+              <div class="art-chips"><span>WEB</span><span>DATA</span><span data-i18n="artChip">INTERACTION</span></div>
+            </div>
+          </div>
+          <div class="art-card art-card-one" aria-hidden="true"><span class="art-card-icon">◇</span><span><span data-i18n="artObserve">observe</span><br><strong data-i18n="artProblem">the problem</strong></span></div>
+          <div class="art-card art-card-two" aria-hidden="true"><span class="art-card-icon">↗</span><span><span data-i18n="artShape">shape</span><br><strong data-i18n="artSolution">the solution</strong></span></div>
+          <div class="art-orbit" aria-hidden="true"></div>
+        </div>
+      </section>
+
+      <div class="section-rule container" aria-hidden="true"><span>01 / 04</span><span>ABOUT</span></div>
+      <section id="about" class="section about-section container" aria-labelledby="about-title">
+        <div class="section-heading">
+          <div><p class="section-kicker" data-i18n="aboutKicker">INTRODUCTION & CV</p><h2 id="about-title" data-i18n="aboutTitle">A little about me.</h2></div>
+          <p class="section-intro" data-i18n="aboutIntro">My interests move between a clear interface, a dependable backend, and the real-world process behind them.</p>
+        </div>
+        <div class="about-grid">
+          <div class="about-narrative">
+            <p class="about-large" data-i18n="aboutMain">I come from a <strong>Physics & Informatics</strong> background, with a habit of learning by building.</p>
+            <p data-i18n="aboutBody">My projects explore language learning, business workflow automation, data dashboards, and simulation. I care about understandable architecture, careful interaction design, and tools people can actually use.</p>
+            <button id="print-cv" class="text-link print-link" type="button"><span data-i18n="printCV">Print this CV snapshot</span><span aria-hidden="true">↗</span></button>
+          </div>
+          <div class="cv-panel" aria-label="CV snapshot">
+            <div class="cv-panel-header"><span data-i18n="cvSnapshot">CV SNAPSHOT</span><span class="cv-plus" aria-hidden="true">✳</span></div>
+            <div class="cv-row"><span class="cv-label" data-i18n="cvBackgroundLabel">BACKGROUND</span><div><strong data-i18n="cvBackground">Physics & Informatics</strong><p data-i18n="cvBackgroundSub">Interdisciplinary technical foundation</p></div></div>
+            <div class="cv-row"><span class="cv-label" data-i18n="cvFocusLabel">CURRENT FOCUS</span><div><strong data-i18n="cvFocus">Product-minded software</strong><p data-i18n="cvFocusSub">Learning tools · automation · interactive systems</p></div></div>
+            <div class="cv-row"><span class="cv-label" data-i18n="cvToolboxLabel">TOOLBOX</span><div class="skill-list"><span>TypeScript / React</span><span>Python / Django</span><span>HTML / CSS / JS</span><span>PostgreSQL</span><span>Automation</span><span>3D / Simulation</span></div></div>
+          </div>
+        </div>
+      </section>
+
+      <div class="section-rule container" aria-hidden="true"><span>02 / 04</span><span>PROJECTS</span></div>
+      <section id="projects" class="section projects-section container" aria-labelledby="projects-title">
+        <div class="section-heading">
+          <div><p class="section-kicker" data-i18n="projectsKicker">SELECTED WORK</p><h2 id="projects-title" data-i18n="projectsTitle">Projects with a purpose.</h2></div>
+          <p class="section-intro" data-i18n="projectsIntro">A focused selection from my GitHub: different problems, one approach — make the complex feel clear.</p>
+        </div>
+        <div id="project-grid" class="project-grid"></div>
+        <a class="all-projects" href="https://github.com/phatnguyen196-solverboiz?tab=repositories" target="_blank" rel="noopener noreferrer"><span data-i18n="allProjects">See all repositories on GitHub</span><span aria-hidden="true">↗</span></a>
+      </section>
+
+      <div class="section-rule container" aria-hidden="true"><span>03 / 04</span><span>NOTES</span></div>
+      <section id="notes" class="section notes-section container" aria-labelledby="notes-title">
+        <div class="section-heading">
+          <div><p class="section-kicker" data-i18n="notesKicker">TECHNICAL BLOG / NOTES</p><h2 id="notes-title" data-i18n="notesTitle">What I’m learning.</h2></div>
+          <p class="section-intro" data-i18n="notesIntro">Short field notes on decisions behind the projects: product thinking, system boundaries, and responsible automation.</p>
+        </div>
+        <div id="note-list" class="note-list"></div>
+      </section>
+
+      <div class="section-rule container" aria-hidden="true"><span>04 / 04</span><span>CONTACT</span></div>
+      <section id="contact" class="section contact-section container" aria-labelledby="contact-title">
+        <div class="contact-layout">
+          <div><p class="section-kicker" data-i18n="contactKicker">LET’S CONNECT</p><h2 id="contact-title"><span data-i18n="contactLine1">Have an idea?</span><br><em data-i18n="contactLine2">Let’s talk.</em></h2><p class="contact-copy" data-i18n="contactBody">I’m always glad to hear about a thoughtful project, a technical challenge, or a chance to learn together.</p></div>
+          <div class="contact-links">
+            <a id="email-link" class="contact-row" href="mailto:phatnguyen1962005@gmail.com"><span><small data-i18n="emailLabel">EMAIL</small><strong id="email-text">phatnguyen1962005@gmail.com</strong></span><span aria-hidden="true">↗</span></a>
+            <a class="contact-row" href="https://github.com/phatnguyen196-solverboiz" target="_blank" rel="noopener noreferrer"><span><small>GITHUB</small><strong>@phatnguyen196-solverboiz</strong></span><span aria-hidden="true">↗</span></a>
+            <a id="linkedin-link" class="contact-row" href="https://www.linkedin.com/in/tr%E1%BB%8Dng-ph%C3%A1t-nguy%E1%BB%85n-6714412bb/" target="_blank" rel="noopener noreferrer"><span><small>LINKEDIN</small><strong data-i18n="linkedinLabel">Connect on LinkedIn</strong></span><span aria-hidden="true">↗</span></a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer"><div class="container footer-inner"><span>© <span id="year">2026</span> Nguyen Trong Phat</span><span data-i18n="footerBuilt">Built with care, curiosity, and a little restraint.</span><a href="#top" data-i18n="backTop">Back to top ↑</a></div></footer>
+  </body>
+</html>
+
