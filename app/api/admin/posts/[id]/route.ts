@@ -8,8 +8,9 @@ type Context = { params: Promise<{ id: string }> };
 
 export async function PUT(request: Request, context: Context) {
   if (!sameOrigin(request)) return Response.json({ error: "Invalid origin." }, { status: 403 });
-  const { isAdmin } = await adminState();
+  const { isAdmin } = await adminState(request);
   if (!isAdmin) return Response.json({ error: "Forbidden." }, { status: 403 });
+
   try {
     const { id } = await context.params;
     const [existing] = await getDb().select().from(posts).where(eq(posts.id, id)).limit(1);
@@ -24,12 +25,19 @@ export async function PUT(request: Request, context: Context) {
 
 export async function DELETE(request: Request, context: Context) {
   if (!sameOrigin(request)) return Response.json({ error: "Invalid origin." }, { status: 403 });
-  const { isAdmin } = await adminState();
+  const { isAdmin } = await adminState(request);
   if (!isAdmin) return Response.json({ error: "Forbidden." }, { status: 403 });
-  const { id } = await context.params;
-  const [existing] = await getDb().select().from(posts).where(eq(posts.id, id)).limit(1);
-  if (!existing) return Response.json({ error: "Post not found." }, { status: 404 });
-  await getDb().delete(posts).where(eq(posts.id, id));
-  if (env.BUCKET) await Promise.all(safeList(existing.images).map(key => env.BUCKET!.delete(key)));
-  return Response.json({ ok: true });
+
+  try {
+    const { id } = await context.params;
+    const [existing] = await getDb().select().from(posts).where(eq(posts.id, id)).limit(1);
+    if (!existing) return Response.json({ error: "Post not found." }, { status: 404 });
+    await getDb().delete(posts).where(eq(posts.id, id));
+    if (typeof env !== "undefined" && env && env.BUCKET) {
+      await Promise.all(safeList(existing.images).map((key) => env.BUCKET!.delete(key)));
+    }
+    return Response.json({ ok: true });
+  } catch (error) {
+    return Response.json({ error: error instanceof Error ? error.message : "Could not delete post." }, { status: 400 });
+  }
 }

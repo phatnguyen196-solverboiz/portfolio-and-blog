@@ -1,10 +1,13 @@
 import { Bi } from "@/components/language-switch";
 import { SiteShell } from "@/components/site-shell";
 import { AchievementsExplorer } from "@/components/achievements-explorer";
+import { publishedPosts } from "@/lib/content";
 
 export const dynamic = "force-dynamic";
 
-export default function AchievementsPage() {
+export default async function AchievementsPage() {
+  const items = await publishedPosts("achievement");
+
   return (
     <SiteShell>
       <div className="wrap">
@@ -24,7 +27,7 @@ export default function AchievementsPage() {
         </header>
 
         <section className="page-content" aria-label="Achievements and Accolades">
-          <AchievementsExplorer />
+          <AchievementsExplorer dynamicItems={items} />
         </section>
       </div>
     </SiteShell>

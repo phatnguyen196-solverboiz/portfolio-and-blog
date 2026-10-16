@@ -2,6 +2,7 @@
 
 import { useState, useMemo } from "react";
 import { Bi } from "./language-switch";
+import { type Post, safeList, safeJson } from "@/lib/types";
 import {
   Trophy,
   Award,
@@ -253,12 +254,43 @@ export const curatedAchievements: AchievementItem[] = [
   },
 ];
 
-export function AchievementsExplorer() {
+export function AchievementsExplorer({ dynamicItems = [] }: { dynamicItems?: Post[] }) {
   const [selectedCategory, setSelectedCategory] = useState<AchievementCategory>("all");
   const [searchQuery, setSearchQuery] = useState("");
 
+  const sourceAchievements = useMemo<AchievementItem[]>(() => {
+    if (!dynamicItems || dynamicItems.length === 0) {
+      return curatedAchievements;
+    }
+
+    const mapped = dynamicItems.map((post) => {
+      const extra = safeJson<Record<string, unknown>>(post.images, {});
+      return {
+        id: post.slug || post.id,
+        category: (extra.category as AchievementCategory) || "awards",
+        categoryLabelEn: String(extra.categoryLabelEn || "Honors & Achievements"),
+        categoryLabelVi: String(extra.categoryLabelVi || "Thành tựu & Vinh danh"),
+        titleEn: post.titleEn,
+        titleVi: post.titleVi || post.titleEn,
+        organization: String(extra.organization || "Achievement"),
+        year: String(extra.year || "2025"),
+        badgeEn: String(extra.badgeEn || post.excerptEn || "Accolade"),
+        badgeVi: String(extra.badgeVi || post.excerptVi || extra.badgeEn || "Vinh danh"),
+        highlightMetric: String(extra.highlightMetric || post.excerptEn || ""),
+        descriptionEn: post.bodyEn || post.excerptEn || "",
+        descriptionVi: post.bodyVi || post.excerptVi || post.bodyEn || "",
+        keyPointsEn: Array.isArray(extra.keyPointsEn) ? (extra.keyPointsEn as string[]) : [],
+        keyPointsVi: Array.isArray(extra.keyPointsVi) ? (extra.keyPointsVi as string[]) : [],
+        technologies: safeList(post.tags),
+        credentialUrl: extra.credentialUrl ? String(extra.credentialUrl) : undefined,
+      };
+    });
+
+    return mapped.length > 0 ? mapped : curatedAchievements;
+  }, [dynamicItems]);
+
   const filteredItems = useMemo(() => {
-    return curatedAchievements.filter((item) => {
+    return sourceAchievements.filter((item) => {
       const matchesCategory = selectedCategory === "all" || item.category === selectedCategory;
       if (!matchesCategory) return false;
 
@@ -271,7 +303,7 @@ export function AchievementsExplorer() {
 
       return matchTitle || matchOrg || matchTech || matchDesc;
     });
-  }, [selectedCategory, searchQuery]);
+  }, [sourceAchievements, selectedCategory, searchQuery]);
 
   return (
     <div className="achievements-explorer">

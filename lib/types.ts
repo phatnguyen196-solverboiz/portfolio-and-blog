@@ -1,4 +1,4 @@
-export type Kind = "project" | "blog";
+export type Kind = "project" | "blog" | "achievement" | "profile";
 export type Status = "draft" | "published";
 
 export interface Post {
@@ -24,6 +24,14 @@ export function safeList(value: string): string[] {
     return Array.isArray(list) ? list.filter((item): item is string => typeof item === "string") : [];
   } catch {
     return [];
+  }
+}
+
+export function safeJson<T>(value: string, fallback: T): T {
+  try {
+    return JSON.parse(value) as T;
+  } catch {
+    return fallback;
   }
 }
 

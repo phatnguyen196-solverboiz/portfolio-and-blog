@@ -1,7 +1,7 @@
 import { and, desc, eq } from "drizzle-orm";
 import { getDb } from "@/db";
 import { admins, posts } from "@/db/schema";
-import { getChatGPTUser, type ChatGPTUser } from "@/app/chatgpt-auth";
+import { verifyAdminSession } from "./auth";
 
 export type { Kind, Status, Post } from "./types";
 export { safeList, postPath } from "./types";
@@ -29,12 +29,23 @@ export async function publishedPost(kind: Kind, slug: string) {
   }
 }
 
-export async function adminState(): Promise<{ user: ChatGPTUser | null; owner: Admin | null; isAdmin: boolean }> {
+export async function adminState(request?: Request): Promise<{
+  user: { userId: string; displayName: string; email: string } | null;
+  owner: { id: string } | null;
+  isAdmin: boolean;
+}> {
   try {
-    const user = await getChatGPTUser();
-    if (!user) return { user: null, owner: null, isAdmin: false };
-    const [owner] = await getDb().select().from(admins).where(eq(admins.id, "owner")).limit(1);
-    return { user, owner: owner ?? null, isAdmin: owner?.userId === user.userId };
+    const session = await verifyAdminSession(request);
+    if (!session) return { user: null, owner: null, isAdmin: false };
+    return {
+      user: {
+        userId: session.sub,
+        displayName: session.name,
+        email: session.email,
+      },
+      owner: { id: "owner" },
+      isAdmin: true,
+    };
   } catch {
     return { user: null, owner: null, isAdmin: false };
   }
@@ -42,7 +53,7 @@ export async function adminState(): Promise<{ user: ChatGPTUser | null; owner: A
 
 
 export function validatePost(input: unknown) {
-  if (!input || typeof input !== "object") throw new Error("Invalid post.");
+  if (!input || typeof input !== "object") throw new Error("Invalid post data.");
   const data = input as Record<string, unknown>;
   const string = (key: string, max: number, required = false) => {
     const value = typeof data[key] === "string" ? data[key].trim() : "";
@@ -50,20 +61,32 @@ export function validatePost(input: unknown) {
     return value;
   };
   const kind = data.kind;
-  const status = data.status;
-  if (kind !== "project" && kind !== "blog") throw new Error("Choose Projects or Tech Writing.");
+  const status = data.status || "published";
+  if (kind !== "project" && kind !== "blog" && kind !== "achievement" && kind !== "profile") {
+    throw new Error("Choose Project, Blog, Achievement, or Profile.");
+  }
   if (status !== "draft" && status !== "published") throw new Error("Choose draft or published.");
+
   const tags = Array.isArray(data.tags) ? data.tags : [];
-  const images = Array.isArray(data.images) ? data.images : [];
-  if (tags.length > 8 || tags.some(x => typeof x !== "string" || x.length > 24)) throw new Error("Use up to eight short tags.");
-  if (images.length > 5 || images.some(x => typeof x !== "string" || !/^[a-f0-9-]+\.(png|jpg|webp|gif)$/.test(x))) throw new Error("Use up to five uploaded images.");
+  const images = Array.isArray(data.images)
+    ? data.images
+    : typeof data.images === "string"
+      ? [data.images]
+      : [];
+
   return {
-    kind: kind as Kind, status: status as Status,
-    titleEn: string("titleEn", 120, true), titleVi: string("titleVi", 120) || null,
-    excerptEn: string("excerptEn", 300, true), excerptVi: string("excerptVi", 300) || null,
-    bodyEn: string("bodyEn", 12000, true), bodyVi: string("bodyVi", 12000) || null,
-    tags: JSON.stringify(tags.map(x => x.trim()).filter(Boolean)),
-    images: JSON.stringify(images),
+    kind: kind as Kind,
+    status: status as Status,
+    titleEn: string("titleEn", 250, true),
+    titleVi: string("titleVi", 250) || null,
+    excerptEn: string("excerptEn", 2000, false),
+    excerptVi: string("excerptVi", 2000) || null,
+    bodyEn: string("bodyEn", 100000, false),
+    bodyVi: string("bodyVi", 100000) || null,
+    tags: JSON.stringify(tags.map((x) => String(x).trim()).filter(Boolean)),
+    images: typeof data.images === "object" && !Array.isArray(data.images)
+      ? JSON.stringify(data.images)
+      : JSON.stringify(images.map((x) => String(x).trim()).filter(Boolean)),
   };
 }
 
