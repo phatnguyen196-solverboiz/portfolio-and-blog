@@ -8,7 +8,7 @@ import { connectorPreview } from "./build/connector-preview-plugin.mjs";
 const SITE_CREATOR_PLACEHOLDER_DATABASE_ID =
   "00000000-0000-4000-8000-000000000000";
 
-const { d1, r2 } = hostingConfig;
+const { d1 } = hostingConfig;
 const d1DatabaseId =
   process.env.CLOUDFLARE_D1_DATABASE_ID ||
   process.env.D1_DATABASE_ID ||
@@ -36,14 +36,7 @@ function getBindingConfig(command: string) {
           },
         ]
       : [],
-    r2_buckets: r2
-      ? [
-          {
-            binding: r2,
-            bucket_name: "site-creator-r2",
-          },
-        ]
-      : [],
+    r2_buckets: [],
   };
 }
 
