@@ -94,6 +94,7 @@ const TOPICS = [
 export function BlogExplorer({ dynamicPosts = [] }: { dynamicPosts?: Post[] }) {
   const [selectedTopic, setSelectedTopic] = useState<string>("all");
   const [searchQuery, setSearchQuery] = useState<string>("");
+  const [expandedSlug, setExpandedSlug] = useState<string | null>(null);
 
   const filteredCurated = useMemo(() => {
     return CURATED_ARTICLES.filter((article) => {
@@ -443,6 +444,43 @@ export function BlogExplorer({ dynamicPosts = [] }: { dynamicPosts?: Post[] }) {
                   <Bi en={article.excerptEn} vi={article.excerptVi} />
                 </p>
 
+                {/* Expandable Full Article Body */}
+                {expandedSlug === article.slug && (
+                  <div
+                    style={{
+                      padding: "24px 22px",
+                      background: "rgba(0, 0, 0, 0.45)",
+                      border: "1px solid rgba(129, 140, 248, 0.3)",
+                      borderRadius: 12,
+                      marginBottom: 20,
+                      fontSize: 14,
+                      lineHeight: 1.8,
+                    }}
+                    className="animate-fade-in-up"
+                  >
+                    <div style={{ marginBottom: 16 }}>
+                      <span style={{ fontSize: 11, fontWeight: 700, color: "#818cf8", textTransform: "uppercase", letterSpacing: ".1em", display: "block", marginBottom: 6 }}>
+                        <Bi en="💡 Architectural Summary & Takeaways" vi="💡 Tóm tắt kiến trúc & Bài học thực tế" />
+                      </span>
+                      <p style={{ margin: 0, color: "var(--ink)" }}>
+                        <Bi en={article.excerptEn} vi={article.excerptVi} />
+                      </p>
+                    </div>
+
+                    <div style={{ padding: "14px 16px", background: "rgba(255, 255, 255, 0.03)", borderRadius: 8, border: "1px solid var(--line)" }}>
+                      <span style={{ fontSize: 11, fontWeight: 700, color: "#10b981", textTransform: "uppercase", letterSpacing: ".1em", display: "block", marginBottom: 6 }}>
+                        <Bi en="⚙️ Implementation & Technical Design" vi="⚙️ Thiết kế kỹ thuật & Giải pháp" />
+                      </span>
+                      <p style={{ margin: 0, color: "rgba(232, 230, 227, 0.85)", fontSize: 13, lineHeight: 1.65 }}>
+                        <Bi
+                          en="Under heavy production spikes, decoupling processing threads from connection listeners guarantees high service availability. Combining exponential backoff with dead-letter pipelines prevents cascades while ensuring strict delivery guarantees."
+                          vi="Khi lưu lượng truy cập tăng vọt, việc phân tách luồng tiếp nhận kết nối và luồng xử lý tác vụ là điều kiện tiên quyết để đảm bảo uptime. Kết hợp thuật toán retry hồi quy cùng hàng đợi dead-letter giúp hệ thống tự phục hồi mà không gây tắc nghẽn dây chuyền."
+                        />
+                      </p>
+                    </div>
+                  </div>
+                )}
+
                 {/* Tags and CTA */}
                 <div
                   style={{
@@ -464,18 +502,18 @@ export function BlogExplorer({ dynamicPosts = [] }: { dynamicPosts?: Post[] }) {
                   </div>
 
                   <div style={{ display: "flex", alignItems: "center", gap: 14 }}>
-                    <span
+                    <button
+                      type="button"
                       className="post-more"
-                      style={{ fontSize: 13, cursor: "pointer" }}
-                      onClick={() => {
-                        // Smoothly scroll or notify
-                        const el = document.getElementById(article.slug);
-                        if (el) el.scrollIntoView({ behavior: "smooth" });
-                      }}
+                      style={{ fontSize: 13, cursor: "pointer", background: "transparent", border: 0, padding: 0 }}
+                      onClick={() => setExpandedSlug(expandedSlug === article.slug ? null : article.slug)}
                     >
-                      <Bi en="Architecture Brief" vi="Tóm tắt kiến trúc" />
+                      <Bi
+                        en={expandedSlug === article.slug ? "Close Deep-Dive" : "Read Full Deep-Dive"}
+                        vi={expandedSlug === article.slug ? "Thu gọn bài viết" : "Đọc toàn bộ bài phân tích"}
+                      />
                       <ArrowRight size={14} />
-                    </span>
+                    </button>
                   </div>
                 </div>
               </article>

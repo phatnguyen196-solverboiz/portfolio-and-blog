@@ -17,8 +17,8 @@ export function PostDetail({ post }: { post: Post }) {
       <header className="article-head animate-fade-in-up" style={{ animationDelay: "0.15s" }}>
         <p className="eyebrow">
           <Bi
-            en={post.kind === "blog" ? "Technical Writing" : "Projects"}
-            vi={post.kind === "blog" ? "Chia sẻ kỹ thuật" : "Dự án"}
+            en={post.kind === "blog" ? "Technical Blog" : "Projects"}
+            vi={post.kind === "blog" ? "Blog Kỹ thuật" : "Dự án"}
           />{" "}
           · {new Date(post.createdAt).toLocaleDateString("en-GB")}
         </p>

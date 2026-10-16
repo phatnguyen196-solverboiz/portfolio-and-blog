@@ -29,7 +29,7 @@ export default function ContactPage() {
           </div>
 
           <p className="eyebrow">
-            <Bi en="04 / Contact & Direct Inquiries" vi="04 / Liên hệ & Trao đổi trực tiếp" />
+            <Bi en="05 / 05 — Contact & Direct Inquiries" vi="05 / 05 — Liên hệ & Trao đổi trực tiếp" />
           </p>
           <h1 className="page-title">
             <Bi en="Let's connect." vi="Kết nối nhé." />

@@ -27,7 +27,7 @@ const destinations = [
   {
     number: "03",
     href: "/blog",
-    title: { en: "Technical Writing", vi: "Chia sẻ kỹ thuật" },
+    title: { en: "Technical Blog", vi: "Blog Kỹ thuật" },
     description: {
       en: "Deep dives on distributed systems, edge runtimes, and database modeling.",
       vi: "Ghi chép chuyên sâu về hệ thống phân tán, edge runtimes và mô hình hóa dữ liệu.",
@@ -35,6 +35,15 @@ const destinations = [
   },
   {
     number: "04",
+    href: "/achievements",
+    title: { en: "Key Achievements & Awards", vi: "Thành tựu & Giải thưởng" },
+    description: {
+      en: "Competitive hackathons, cloud certifications, production scale, and honors.",
+      vi: "Giải thưởng hackathon, chứng chỉ đám mây, quy mô hệ thống và danh hiệu học thuật.",
+    },
+  },
+  {
+    number: "05",
     href: "/contact",
     title: { en: "Contact & Availability", vi: "Liên hệ & Trạng thái" },
     description: {
@@ -192,13 +201,13 @@ export default function Home() {
             </p>
 
             <div style={{ display: "flex", flexWrap: "wrap", gap: 12, alignItems: "center" }}>
-              <Link className="button button-primary" href="/projects">
+              <a className="button button-primary" href="/projects">
                 <Bi en="View Selected Work" vi="Xem dự án chọn lọc" />
                 <span aria-hidden="true">↗</span>
-              </Link>
-              <Link className="button button-secondary" href="/contact">
+              </a>
+              <a className="button button-secondary" href="/contact">
                 <Bi en="Get in Touch" vi="Liên hệ trao đổi" />
-              </Link>
+              </a>
               <CopyEmailButton />
             </div>
           </div>
@@ -232,14 +241,14 @@ export default function Home() {
                 <Bi en="Featured Projects." vi="Dự án nổi bật." />
               </h2>
             </div>
-            <Link
+            <a
               href="/projects"
               className="post-more"
               style={{ fontSize: 13, display: "inline-flex", alignItems: "center", gap: 6 }}
             >
               <Bi en="View all projects & case studies" vi="Xem tất cả dự án & nghiên cứu" />
               <ArrowRight size={14} />
-            </Link>
+            </a>
           </div>
 
           <div
@@ -344,13 +353,11 @@ export default function Home() {
                     }}
                   >
                     <a
-                      href={project.demoUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
+                      href={`/projects#${project.id}`}
                       className="button-sm button-primary"
                       style={{ textDecoration: "none" }}
                     >
-                      <span><Bi en="Live Demo" vi="Bản xem trước" /></span>
+                      <span><Bi en="View Architecture" vi="Xem kiến trúc chi tiết" /></span>
                       <ExternalLink size={12} />
                     </a>
                     <a
@@ -397,18 +404,18 @@ export default function Home() {
           <TechStack filterInteractive={false} />
         </section>
 
-        {/* EXPLORE 4 SPACES (INDEX TABLE) */}
+        {/* EXPLORE 5 SPACES (INDEX TABLE) */}
         <section className="home-index" aria-labelledby="explore-title" style={{ paddingTop: 20 }}>
           <div className="index-head animate-fade-in-up" style={{ animationDelay: "0.2s" }}>
             <h2 id="explore-title" className="eyebrow" style={{ margin: 0 }}>
               <Bi en="Index & Spaces" vi="Mục lục & Không gian" />
             </h2>
             <span className="muted">
-              <Bi en="Explore the four primary sections" vi="Khám phá bốn khu vực chính" />
+              <Bi en="Explore the five primary sections" vi="Khám phá năm khu vực chính" />
             </span>
           </div>
           {destinations.map((item, idx) => (
-            <Link
+            <a
               href={item.href}
               className="index-row animate-fade-in-up"
               key={item.number}
@@ -424,7 +431,7 @@ export default function Home() {
               <span className="index-arrow" aria-hidden="true">
                 ↗
               </span>
-            </Link>
+            </a>
           ))}
         </section>
 
@@ -453,17 +460,17 @@ export default function Home() {
                 className="serif"
                 style={{ fontSize: "clamp(30px, 4vw, 44px)", margin: 0, letterSpacing: "-0.03em" }}
               >
-                <Bi en="Recent Technical Writing." vi="Bài viết kỹ thuật mới nhất." />
+                <Bi en="Recent Technical Blog." vi="Blog Kỹ thuật mới nhất." />
               </h2>
             </div>
-            <Link
+            <a
               href="/blog"
               className="post-more"
               style={{ fontSize: 13, display: "inline-flex", alignItems: "center", gap: 6 }}
             >
               <Bi en="View all articles & deep-dives" vi="Xem tất cả bài viết & phân tích" />
               <ArrowRight size={14} />
-            </Link>
+            </a>
           </div>
 
           <div

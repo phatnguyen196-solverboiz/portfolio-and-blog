@@ -23,7 +23,7 @@ export default function AboutPage() {
           >
             <div>
               <p className="eyebrow">
-                <Bi en="01 / About & Experience" vi="01 / Giới thiệu & Kinh nghiệm" />
+                <Bi en="01 / 05 — About & Experience" vi="01 / 05 — Giới thiệu & Kinh nghiệm" />
               </p>
               <h1 className="page-title">
                 <Bi en="About & Curriculum Vitae." vi="Giới thiệu & Sơ yếu lý lịch." />

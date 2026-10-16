@@ -143,6 +143,7 @@ const CATEGORIES = [
 export function ProjectsExplorer({ dynamicItems = [] }: { dynamicItems?: Post[] }) {
   const [selectedCategory, setSelectedCategory] = useState<string>("all");
   const [searchQuery, setSearchQuery] = useState<string>("");
+  const [expandedId, setExpandedId] = useState<string | null>(null);
 
   const filteredCurated = useMemo(() => {
     return CURATED_PROJECTS.filter((project) => {
@@ -568,6 +569,42 @@ export function ProjectsExplorer({ dynamicItems = [] }: { dynamicItems?: Post[] 
                     ))}
                   </div>
 
+                  {/* Expandable Architecture View */}
+                  {expandedId === project.id && (
+                    <div
+                      style={{
+                        padding: "18px 18px",
+                        background: "rgba(0, 0, 0, 0.45)",
+                        border: "1px solid rgba(129, 140, 248, 0.3)",
+                        borderRadius: 10,
+                        marginBottom: 18,
+                        display: "grid",
+                        gap: 12,
+                        fontSize: 13,
+                        lineHeight: 1.6,
+                      }}
+                      className="animate-fade-in-up"
+                    >
+                      <div>
+                        <span style={{ fontSize: 11, fontWeight: 700, color: "#818cf8", textTransform: "uppercase", letterSpacing: ".08em", display: "block", marginBottom: 4 }}>
+                          <Bi en="🏗️ System Architecture" vi="🏗️ Kiến trúc hệ thống" />
+                        </span>
+                        <p style={{ margin: 0, color: "var(--ink)" }}>
+                          <Bi en={project.solutionEn} vi={project.solutionVi} />
+                        </p>
+                      </div>
+
+                      <div>
+                        <span style={{ fontSize: 11, fontWeight: 700, color: "#10b981", textTransform: "uppercase", letterSpacing: ".08em", display: "block", marginBottom: 4 }}>
+                          <Bi en="⚡ Performance Benchmark" vi="⚡ Kiểm thử hiệu năng" />
+                        </span>
+                        <p style={{ margin: 0, color: "rgba(232, 230, 227, 0.85)" }}>
+                          <Bi en={project.highlightEn} vi={project.highlightVi} />
+                        </p>
+                      </div>
+                    </div>
+                  )}
+
                   <div
                     style={{
                       display: "flex",
@@ -578,20 +615,21 @@ export function ProjectsExplorer({ dynamicItems = [] }: { dynamicItems?: Post[] 
                       flexWrap: "wrap",
                     }}
                   >
-                    <a
-                      href={project.demoUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
+                    <button
+                      type="button"
+                      onClick={() => setExpandedId(expandedId === project.id ? null : project.id)}
                       className="button-sm button-primary"
                     >
                       <span>
-                        <Bi en="Live Demo" vi="Bản xem trước" />
+                        <Bi
+                          en={expandedId === project.id ? "Hide Architecture" : "Explore Architecture"}
+                          vi={expandedId === project.id ? "Thu gọn kiến trúc" : "Xem kiến trúc chi tiết"}
+                        />
                       </span>
-                      <ExternalLink size={12} />
-                    </a>
+                    </button>
 
                     <a
-                      href={project.githubUrl}
+                      href={project.githubUrl || "https://github.com/phatnguyen196-solverboiz"}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="button-sm button-secondary"

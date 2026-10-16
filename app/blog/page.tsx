@@ -13,10 +13,10 @@ export default async function BlogPage() {
       <div className="wrap">
         <header className="page-head animate-fade-in-up" style={{ animationDelay: "0.1s" }}>
           <p className="eyebrow">
-            03 / 04 — <Bi en="Engineering notes & Deep-dives" vi="Ghi chép kỹ thuật & Phân tích" />
+            03 / 05 — <Bi en="Engineering notes & Deep-dives" vi="Ghi chép kỹ thuật & Phân tích" />
           </p>
           <h1 className="page-title">
-            <Bi en="Technical Writing." vi="Chia sẻ kỹ thuật." />
+            <Bi en="Technical Blog." vi="Blog Kỹ thuật." />
           </h1>
           <p className="page-intro">
             <Bi
@@ -26,7 +26,7 @@ export default async function BlogPage() {
           </p>
         </header>
 
-        <section className="page-content" aria-label="Technical writing">
+        <section className="page-content" aria-label="Technical blog">
           <BlogExplorer dynamicPosts={items} />
         </section>
       </div>

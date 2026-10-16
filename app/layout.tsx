@@ -18,7 +18,7 @@ const playfair = Playfair_Display({
 });
 
 export const metadata: Metadata = {
-  title: "Nguyen Trong Phat — Portfolio & Technical Writing",
+  title: "Nguyen Trong Phat — Portfolio & Technical Blog",
   description: "Projects, a concise CV, and practical engineering notes by Nguyen Trong Phat.",
   icons: {
     icon: "/favicon.svg",

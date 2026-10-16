@@ -21,6 +21,7 @@ import {
   Layers,
   Briefcase,
   Shield,
+  Trophy,
 } from "lucide-react";
 import { Bi, toggleGlobalLanguage } from "./language-switch";
 
@@ -152,7 +153,7 @@ export function CommandMenu({ open: controlledOpen, onOpenChange }: CommandMenuP
               <Command.Item
                 className="cmd-item"
                 value="home trang chu trinh khoi tao landing"
-                onSelect={() => runAction(() => router.push("/"))}
+                onSelect={() => runAction(() => { window.location.href = "/"; })}
               >
                 <div className="cmd-item-left">
                   <Home className="cmd-item-icon" size={16} />
@@ -166,7 +167,7 @@ export function CommandMenu({ open: controlledOpen, onOpenChange }: CommandMenuP
               <Command.Item
                 className="cmd-item"
                 value="about cv resume curriculum vitae background kinh nghiem tieu su"
-                onSelect={() => runAction(() => router.push("/about"))}
+                onSelect={() => runAction(() => { window.location.href = "/about"; })}
               >
                 <div className="cmd-item-left">
                   <User className="cmd-item-icon" size={16} />
@@ -180,7 +181,7 @@ export function CommandMenu({ open: controlledOpen, onOpenChange }: CommandMenuP
               <Command.Item
                 className="cmd-item"
                 value="projects du an selected work showcases san pham source code"
-                onSelect={() => runAction(() => router.push("/projects"))}
+                onSelect={() => runAction(() => { window.location.href = "/projects"; })}
               >
                 <div className="cmd-item-left">
                   <Code className="cmd-item-icon" size={16} />
@@ -193,13 +194,13 @@ export function CommandMenu({ open: controlledOpen, onOpenChange }: CommandMenuP
 
               <Command.Item
                 className="cmd-item"
-                value="blog technical writing bai viet chia se ky thuat essays articles"
-                onSelect={() => runAction(() => router.push("/blog"))}
+                value="blog technical blog bai viet chia se ky thuat essays articles"
+                onSelect={() => runAction(() => { window.location.href = "/blog"; })}
               >
                 <div className="cmd-item-left">
                   <FileText className="cmd-item-icon" size={16} />
                   <span>
-                    <Bi en="Technical Writing" vi="Chia sẻ kỹ thuật & Kiến trúc" />
+                    <Bi en="Technical Blog" vi="Blog Kỹ thuật & Kiến trúc" />
                   </span>
                 </div>
                 <span className="cmd-shortcut">G B</span>
@@ -207,8 +208,22 @@ export function CommandMenu({ open: controlledOpen, onOpenChange }: CommandMenuP
 
               <Command.Item
                 className="cmd-item"
+                value="achievements thanh tuu giai thuong hackathons awards certifications credentials accolades"
+                onSelect={() => runAction(() => { window.location.href = "/achievements"; })}
+              >
+                <div className="cmd-item-left">
+                  <Trophy className="cmd-item-icon" size={16} />
+                  <span>
+                    <Bi en="Achievements & Awards" vi="Thành tựu & Giải thưởng" />
+                  </span>
+                </div>
+                <span className="cmd-shortcut">G T</span>
+              </Command.Item>
+
+              <Command.Item
+                className="cmd-item"
                 value="contact lien he inquiry email trao doi hop tac message"
-                onSelect={() => runAction(() => router.push("/contact"))}
+                onSelect={() => runAction(() => { window.location.href = "/contact"; })}
               >
                 <div className="cmd-item-left">
                   <Mail className="cmd-item-icon" size={16} />

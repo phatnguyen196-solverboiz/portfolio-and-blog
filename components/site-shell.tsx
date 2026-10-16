@@ -10,7 +10,8 @@ import { CommandMenu } from "./command-menu";
 const navigation = [
   { href: "/about", en: "About / CV", vi: "Giới thiệu / CV" },
   { href: "/projects", en: "Projects", vi: "Dự án" },
-  { href: "/blog", en: "Technical Writing", vi: "Chia sẻ kỹ thuật" },
+  { href: "/blog", en: "Technical Blog", vi: "Blog Kỹ thuật" },
+  { href: "/achievements", en: "Achievements", vi: "Thành tựu" },
   { href: "/contact", en: "Contact", vi: "Liên hệ" },
 ];
 
@@ -28,27 +29,27 @@ export function SiteShell({ children }: { children: ReactNode }) {
       <CommandMenu open={commandOpen} onOpenChange={setCommandOpen} />
       <header className="site-header">
         <div className="wrap header-inner">
-          <Link href="/" className="wordmark" aria-label="Nguyen Trong Phat, home">
-            <span className="wordmark-mark" aria-hidden="true">np.</span>
+          <a href="/" className="wordmark" aria-label="Nguyen Trong Phat, home">
             <span
               style={{
                 display: "inline-block",
-                width: 6,
-                height: 6,
+                width: 7,
+                height: 7,
                 borderRadius: "50%",
                 background: "linear-gradient(135deg, #818cf8, #a78bfa)",
-                marginLeft: 4,
+                marginRight: 8,
+                boxShadow: "0 0 10px rgba(129, 140, 248, 0.7)",
                 animation: "pulse 2s ease-in-out infinite",
               }}
               aria-hidden="true"
             />
             <span className="wordmark-name">Nguyen Trong Phat</span>
-          </Link>
+          </a>
           <nav className={`site-nav ${menuOpen ? "open" : ""}`} aria-label="Main navigation">
             {navigation.map(({ href, en, vi }) => {
-              const active = pathname === href || pathname.startsWith(href + "/");
+              const active = pathname === href || (href !== "/" && pathname.startsWith(href + "/"));
               return (
-                <Link
+                <a
                   key={href}
                   href={href}
                   className={active ? "nav-link active" : "nav-link"}
@@ -56,7 +57,7 @@ export function SiteShell({ children }: { children: ReactNode }) {
                   onClick={() => setMenuOpen(false)}
                 >
                   <Bi en={en} vi={vi} />
-                </Link>
+                </a>
               );
             })}
             {/* Quick search button inside mobile menu */}

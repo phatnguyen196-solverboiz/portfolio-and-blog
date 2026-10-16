@@ -13,7 +13,7 @@ export default async function ProjectsPage() {
       <div className="wrap">
         <header className="page-head animate-fade-in-up" style={{ animationDelay: "0.1s" }}>
           <p className="eyebrow">
-            02 / 04 — <Bi en="Selected work & Architecture" vi="Dự án chọn lọc & Kiến trúc" />
+            02 / 05 — <Bi en="Selected work & Architecture" vi="Dự án chọn lọc & Kiến trúc" />
           </p>
           <h1 className="page-title">
             <Bi en="Projects & Case Studies." vi="Dự án & Nghiên cứu." />
