@@ -16,8 +16,8 @@ export default function ContactPage() {
             <span className="status-dot status-online" />
             <span>
               <Bi
-                en="Available for Software Engineering Roles"
-                vi="Sẵn sàng cho các cơ hội kỹ sư phần mềm"
+                en="Seeking Intern / Fresher Roles in Simulation, Embedded & R&D"
+                vi="Sẵn sàng cho vị trí Thực tập / Fresher Mô phỏng, Nhúng & R&D"
               />
             </span>
             <span
@@ -36,8 +36,8 @@ export default function ContactPage() {
           </h1>
           <p className="page-intro">
             <Bi
-              en="Whether you're exploring full-time engineering opportunities, technical advisory, or open-source collaborations, I'm always glad to talk."
-              vi="Dù bạn đang tìm kiếm kỹ sư full-stack toàn thời gian, trao đổi tư vấn kỹ thuật hay hợp tác mã nguồn mở, tôi luôn sẵn sàng lắng nghe."
+              en="Whether you're exploring internship or fresher opportunities in scientific simulation, embedded firmware, PCB design, or R&D engineering, feel free to reach out via direct phone (+84 797 190 605), email, or the form below."
+              vi="Dù bạn đang tìm kiếm thực tập sinh hoặc kỹ sư fresher về mô phỏng số, firmware nhúng, thiết kế mạch KiCad hay nghiên cứu R&D, hãy liên hệ trực tiếp qua số điện thoại (+84 797 190 605), email hoặc biểu mẫu bên dưới."
             />
           </p>
         </header>

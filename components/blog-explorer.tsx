@@ -30,65 +30,13 @@ export interface CuratedArticle {
   contentVi?: string;
 }
 
-export const CURATED_ARTICLES: CuratedArticle[] = [
-  {
-    slug: "designing-high-throughput-background-job-workers",
-    titleEn: "Designing High-Throughput Background Job Workers in Distributed Systems",
-    titleVi: "Thiết kế hệ thống xử lý tác vụ nền thông lượng cao trong hệ thống phân tán",
-    topic: "architecture",
-    topicLabelEn: "Architecture & Systems",
-    topicLabelVi: "Kiến trúc & Hệ thống",
-    date: "2026-03-12",
-    readTimeMin: 7,
-    readTimeEn: "7 min read",
-    readTimeVi: "7 phút đọc",
-    excerptEn:
-      "An architectural analysis of concurrency patterns, Redis streams persistence, dead-letter queues, and graceful shutdown semantics under high-volume load spikes.",
-    excerptVi:
-      "Phân tích kiến trúc chuyên sâu về mô hình worker pool đa luồng, lưu trữ Redis streams, hàng đợi dead-letter và cơ chế tắt máy an toàn khi tải tăng đột biến.",
-    tags: ["Distributed Systems", "Go", "Redis", "Concurrency", "Reliability"],
-  },
-  {
-    slug: "zero-latency-edge-rendering-nextjs-cloudflare",
-    titleEn: "Zero-Latency Edge Rendering: Next.js with Cloudflare Workers Architecture",
-    titleVi: "Kết xuất tại Edge không độ trễ: Kiến trúc Next.js cùng Cloudflare Workers",
-    topic: "frontend",
-    topicLabelEn: "Edge & Next.js",
-    topicLabelVi: "Edge & Next.js",
-    date: "2026-02-18",
-    readTimeMin: 5,
-    readTimeEn: "5 min read",
-    readTimeVi: "5 phút đọc",
-    excerptEn:
-      "How to eliminate cold starts and client hydration flickers while deploying modern Next.js 16 App Router applications across globally distributed edge worker runtimes.",
-    excerptVi:
-      "Phương pháp triệt tiêu hiện tượng khởi động nguội và giật giao diện khi triển khai Next.js 16 App Router trên các trung tâm dữ liệu phân tán toàn cầu của Cloudflare.",
-    tags: ["Next.js 16", "Cloudflare", "Edge Computing", "TypeScript", "Performance"],
-  },
-  {
-    slug: "type-safe-database-modeling-drizzle-postgresql",
-    titleEn: "Type-Safe Database Modeling with Drizzle ORM and PostgreSQL",
-    titleVi: "Mô hình hóa cơ sở dữ liệu Type-Safe với Drizzle ORM và PostgreSQL",
-    topic: "databases",
-    topicLabelEn: "Databases & Performance",
-    topicLabelVi: "Cơ sở dữ liệu & Hiệu năng",
-    date: "2026-01-08",
-    readTimeMin: 9,
-    readTimeEn: "9 min read",
-    readTimeVi: "9 phút đọc",
-    excerptEn:
-      "Practical lessons in architecting relational schemas, zero-downtime schema migrations, composite index tuning, and analyzing EXPLAIN ANALYZE execution trees.",
-    excerptVi:
-      "Kinh nghiệm thực tiễn thiết kế schema quan hệ, di chuyển dữ liệu không gián đoạn, tối ưu chỉ mục phức hợp và phân tích cây thực thi EXPLAIN ANALYZE.",
-    tags: ["PostgreSQL", "Drizzle ORM", "SQL Tuning", "TypeScript", "Indexing"],
-  },
-];
+export const CURATED_ARTICLES: CuratedArticle[] = [];
 
 const TOPICS = [
   { id: "all", labelEn: "All Topics", labelVi: "Tất cả chủ đề" },
-  { id: "architecture", labelEn: "Systems & Architecture", labelVi: "Hệ thống & Kiến trúc" },
-  { id: "frontend", labelEn: "Edge & Frontend", labelVi: "Edge & Giao diện" },
-  { id: "databases", labelEn: "Databases & SQL", labelVi: "Cơ sở dữ liệu & SQL" },
+  { id: "simulation", labelEn: "Computational & Simulation", labelVi: "Mô phỏng & Tính toán" },
+  { id: "embedded", labelEn: "Embedded & IoT", labelVi: "Hệ thống Nhúng & IoT" },
+  { id: "hardware", labelEn: "Hardware & Instrumentation", labelVi: "Phần cứng & Đo kiểm" },
 ];
 
 export function BlogExplorer({ dynamicPosts = [] }: { dynamicPosts?: Post[] }) {
@@ -344,41 +292,64 @@ export function BlogExplorer({ dynamicPosts = [] }: { dynamicPosts?: Post[] }) {
         </div>
       )}
 
-      {/* CURATED TECHNICAL DEEP-DIVES (NEVER EMPTY) */}
-      <div>
-        <div style={{ marginBottom: 22 }}>
-          <span className="eyebrow">
-            <Bi en="Engineering Notes & Architecture" vi="Ghi chép kỹ thuật & Kiến trúc" />
+      {/* ARTICLES FEED OR PREPARATION STATE */}
+      {filteredDynamic.length === 0 && filteredCurated.length === 0 ? (
+        <div
+          className="glass-card glow-card animate-fade-in-up"
+          style={{
+            padding: "48px 36px",
+            textAlign: "center",
+            maxWidth: 680,
+            margin: "0 auto",
+            borderRadius: 16,
+          }}
+        >
+          <span
+            className="eyebrow"
+            style={{
+              padding: "4px 12px",
+              borderRadius: 20,
+              background: "rgba(99, 102, 241, 0.1)",
+              border: "1px solid rgba(99, 102, 241, 0.25)",
+              color: "#818cf8",
+              display: "inline-block",
+              marginBottom: 16,
+            }}
+          >
+            <Bi en="03 / 05 — Technical Blog & Research" vi="03 / 05 — Blog Kỹ thuật & Nghiên cứu" />
           </span>
-          <h2 className="serif" style={{ fontSize: 24, margin: "6px 0 0" }}>
-            <Bi en="Flagship Technical Deep-Dives" vi="Các bài viết kỹ thuật tiêu biểu" />
-          </h2>
-        </div>
+          <h3 className="serif" style={{ fontSize: "28px", margin: "0 0 12px", color: "var(--ink)" }}>
+            <Bi
+              en="Engineering Notes & Physics Write-ups in Preparation."
+              vi="Ghi chép Kỹ thuật & Bài viết Vật lý Đang Chuẩn bị."
+            />
+          </h3>
+          <p
+            className="muted"
+            style={{
+              fontSize: "14px",
+              lineHeight: 1.75,
+              maxWidth: 540,
+              margin: "0 auto 28px",
+            }}
+          >
+            <Bi
+              en="Personal write-ups on computational physics algorithms, numerical simulations (Python, MATLAB), and embedded instrumentation experiments are currently being drafted. You can compose and publish articles directly via the Admin Studio."
+              vi="Các bài viết chia sẻ về thuật toán mô phỏng vật lý, phân tích số liệu (Python, MATLAB) và thực nghiệm mạch nhúng đang được hoàn thiện. Bạn có thể soạn và đăng bài mới trực tiếp từ trang Quản trị."
+            />
+          </p>
 
-        {filteredCurated.length === 0 ? (
-          <div className="empty-state">
-            <span className="eyebrow">00 / 00</span>
-            <h3 className="serif" style={{ fontSize: 26, margin: "12px 0 8px" }}>
-              <Bi en="No articles match your query." vi="Không tìm thấy bài viết phù hợp." />
-            </h3>
-            <p className="muted" style={{ margin: "0 auto 20px" }}>
-              <Bi
-                en="Try selecting a different topic or resetting your search input."
-                vi="Hãy thử chọn chủ đề khác hoặc xóa từ khóa tìm kiếm."
-              />
-            </p>
-            <button
-              type="button"
-              className="button button-secondary"
-              onClick={() => {
-                setSelectedTopic("all");
-                setSearchQuery("");
-              }}
-            >
-              <Bi en="Reset Filters" vi="Đặt lại bộ lọc" />
-            </button>
+          <div style={{ display: "flex", justifyContent: "center", gap: 12, flexWrap: "wrap" }}>
+            <a href="/admin" className="button button-primary">
+              <Bi en="Open Admin Studio" vi="Mở Studio Soạn bài (/admin)" />
+            </a>
+            <a href="/about" className="button button-outline">
+              <Bi en="View Background & Skills" vi="Xem Nền tảng & Kỹ năng" />
+            </a>
           </div>
-        ) : (
+        </div>
+      ) : (
+        <div>
           <div style={{ display: "flex", flexDirection: "column", gap: 24 }}>
             {filteredCurated.map((article, idx) => (
               <article
@@ -519,8 +490,8 @@ export function BlogExplorer({ dynamicPosts = [] }: { dynamicPosts?: Post[] }) {
               </article>
             ))}
           </div>
-        )}
-      </div>
+        </div>
+      )}
     </div>
   );
 }

@@ -41,103 +41,14 @@ export interface CuratedProject {
   demoUrl: string;
 }
 
-export const CURATED_PROJECTS: CuratedProject[] = [
-  {
-    id: "task-queue",
-    titleEn: "Distributed Task Queue & Job Scheduler",
-    titleVi: "Hệ thống điều phối hàng đợi tác vụ & Lập lịch phân tán",
-    category: "systems",
-    categoryLabelEn: "Systems & Backend",
-    categoryLabelVi: "Hệ thống & Backend",
-    statusBadge: "Production Ready",
-    problemEn:
-      "High-volume asynchronous operations often encounter dropped messages, unhandled worker crashes, and thundering herd failures during load spikes.",
-    problemVi:
-      "Các tác vụ bất đồng bộ khối lượng lớn thường gặp lỗi rơi tin nhắn, sự cố sập worker không kiểm soát và hiện tượng thundering herd khi lưu lượng đột biến.",
-    solutionEn:
-      "Constructed a resilient worker pool in Go utilizing Redis streams for durable persistence. Implemented distributed locks, priority lanes, dead-letter queues, and graceful worker shutdown.",
-    solutionVi:
-      "Xây dựng worker pool bền bỉ bằng Go sử dụng Redis streams để lưu trữ tin cậy. Tích hợp distributed locks, phân làn ưu tiên, hàng đợi dead-letter và tắt worker an toàn (graceful shutdown).",
-    highlightEn: "12,000+ jobs/sec throughput · Sub-15ms scheduling latency · Zero data loss with Redis WAL persistence",
-    highlightVi: "Xử lý hơn 12.000 tác vụ/giây · Độ trễ điều phối dưới 15ms · Đảm bảo không mất dữ liệu với Redis WAL",
-    tags: ["Go", "Redis", "Docker", "gRPC", "Prometheus"],
-    githubUrl: "https://github.com/phatnguyen196-solverboiz/distributed-task-queue",
-    demoUrl: "https://task-queue-demo.phatnguyen.dev",
-  },
-  {
-    id: "edge-cms",
-    titleEn: "High-Performance Edge CMS & Portfolio",
-    titleVi: "Nền tảng CMS & Portfolio hiệu năng cao trên Edge",
-    category: "fullstack",
-    categoryLabelEn: "Full-Stack & Edge",
-    categoryLabelVi: "Full-Stack & Edge",
-    statusBadge: "Active Showcase",
-    problemEn:
-      "Traditional CMS architectures suffer from heavy bundle sizes, slow cold starts on serverless providers, and flash-of-unstyled-content during client-side language switching.",
-    problemVi:
-      "Kiến trúc CMS truyền thống thường chịu tải bundle nặng nề, khởi động nguội chậm trên serverless và hiện tượng nháy giao diện khi chuyển ngôn ngữ ở client.",
-    solutionEn:
-      "Deployed Next.js 16 App Router on Cloudflare Workers edge runtime. Uses Drizzle ORM for type-safe SQLite schema access, CSS-driven bilingual toggling with zero hydration delay, and obsidian glassmorphism.",
-    solutionVi:
-      "Triển khai Next.js 16 App Router trên edge runtime của Cloudflare Workers. Sử dụng Drizzle ORM cho schema SQLite type-safe, chuyển ngữ song ngữ qua CSS không độ trễ hydration và giao diện obsidian glassmorphism.",
-    highlightEn: "Sub-50ms global TTFB · Type-safe Drizzle ORM schema · Zero layout shift (CLS = 0.00)",
-    highlightVi: "TTFB toàn cầu dưới 50ms · Schema chặt chẽ với Drizzle ORM · Kiến trúc song ngữ không giật khung hình",
-    tags: ["Next.js 16", "TypeScript", "Cloudflare", "Drizzle ORM", "Tailwind CSS"],
-    githubUrl: "https://github.com/phatnguyen196-solverboiz/portfolio-and-blog",
-    demoUrl: "https://phatnguyen.dev",
-  },
-  {
-    id: "collab-canvas",
-    titleEn: "Real-Time Code Collaboration Canvas",
-    titleVi: "Bảng vẽ & Trình soạn thảo mã nguồn cộng tác thời gian thực",
-    category: "frontend",
-    categoryLabelEn: "Frontend & Systems",
-    categoryLabelVi: "Frontend & Hệ thống",
-    statusBadge: "Open Source",
-    problemEn:
-      "Concurrent multi-user code editing across web browsers frequently causes race conditions, overwritten keystrokes, and disconnected cursor states.",
-    problemVi:
-      "Nhiều người dùng cùng chỉnh sửa mã nguồn đồng thời trên trình duyệt dễ dẫn đến tranh chấp dữ liệu (race conditions), ghi đè phím gõ và lệch con trỏ.",
-    solutionEn:
-      "Implemented Yjs Conflict-Free Replicated Data Types (CRDTs) over WebSockets with Monaco Editor and HTML5 Canvas. Includes real-time presence indicators, chat, and an isolated WebAssembly sandbox for client-side execution.",
-    solutionVi:
-      "Ứng dụng cấu trúc dữ liệu không xung đột Yjs CRDT qua WebSockets kết hợp Monaco Editor và HTML5 Canvas. Hỗ trợ hiển thị con trỏ trực tiếp, trao đổi nhóm và sandbox WebAssembly chạy mã tại trình duyệt.",
-    highlightEn: "Sub-20ms peer sync latency · Memory footprint < 15MB · In-browser WebAssembly execution",
-    highlightVi: "Độ trễ đồng bộ dưới 20ms · Chiếm dụng bộ nhớ dưới 15MB · Trình chạy mã nguồn WebAssembly trực tiếp",
-    tags: ["React 19", "TypeScript", "WebSockets", "CRDTs", "Tailwind CSS"],
-    githubUrl: "https://github.com/phatnguyen196-solverboiz/collaborative-code-canvas",
-    demoUrl: "https://canvas.phatnguyen.dev",
-  },
-  {
-    id: "asset-analyzer",
-    titleEn: "Algorithmic Asset Analyzer & Portfolio Tracker",
-    titleVi: "Công cụ phân tích tài sản định lượng & Mô phỏng danh mục",
-    category: "tools",
-    categoryLabelEn: "Tools & Analytics",
-    categoryLabelVi: "Công cụ & Phân tích",
-    statusBadge: "Research Tool",
-    problemEn:
-      "Individual investors and engineers lack fast, privacy-preserving client-side tools to simulate portfolio risk distributions, Sharpe ratios, and historical drawdowns.",
-    problemVi:
-      "Nhà đầu tư cá nhân thiếu công cụ nhanh gọn, bảo mật dữ liệu cục bộ để mô phỏng rủi ro danh mục, tỷ lệ Sharpe và kiểm thử suy giảm Monte Carlo.",
-    solutionEn:
-      "Engineered an analytical quantitative backtesting platform combining a Python/FastAPI statistical engine with an interactive React/Recharts interface. Runs Monte Carlo simulations in Web Workers without sending private holdings to remote servers.",
-    solutionVi:
-      "Xây dựng ứng dụng phân tích kết hợp công cụ định lượng Python/FastAPI với giao diện trực quan React/Recharts. Chạy 10.000 kịch bản Monte Carlo trên Web Worker mà không gửi dữ liệu riêng tư lên máy chủ.",
-    highlightEn: "500ms multi-asset backtest latency · 10,000 Monte Carlo iterations in Web Worker · Responsive SVG charts",
-    highlightVi: "Độ trễ backtest đa tài sản dưới 500ms · Chạy 10.000 kịch bản Monte Carlo trên Web Worker · Đồ thị SVG tương tác mượt mà",
-    tags: ["Python", "FastAPI", "PostgreSQL", "Recharts", "Tailwind CSS"],
-    githubUrl: "https://github.com/phatnguyen196-solverboiz/algorithmic-asset-analyzer",
-    demoUrl: "https://analyzer.phatnguyen.dev",
-  },
-];
+export const CURATED_PROJECTS: CuratedProject[] = [];
 
 const CATEGORIES = [
   { id: "all", labelEn: "All Work", labelVi: "Tất cả dự án" },
-  { id: "fullstack", labelEn: "Full-Stack & Edge", labelVi: "Full-Stack & Edge" },
-  { id: "systems", labelEn: "Systems & Backend", labelVi: "Hệ thống & Backend" },
-  { id: "frontend", labelEn: "Frontend & UI", labelVi: "Frontend & UI" },
-  { id: "tools", labelEn: "Tools & Data", labelVi: "Công cụ & Dữ liệu" },
+  { id: "systems", labelEn: "Computational & Simulation", labelVi: "Mô phỏng & Tính toán" },
+  { id: "fullstack", labelEn: "Embedded & IoT", labelVi: "Nhúng & IoT" },
+  { id: "frontend", labelEn: "Hardware & CAD", labelVi: "Phần cứng & CAD" },
+  { id: "tools", labelEn: "Tools & Software", labelVi: "Công cụ & Phần mềm" },
 ];
 
 export function ProjectsExplorer({ dynamicItems = [] }: { dynamicItems?: Post[] }) {
@@ -394,41 +305,64 @@ export function ProjectsExplorer({ dynamicItems = [] }: { dynamicItems?: Post[] 
         </div>
       )}
 
-      {/* CURATED FLAGSHIP SHOWCASE GRID (NEVER EMPTY) */}
-      <div>
-        <div style={{ marginBottom: 20 }}>
-          <span className="eyebrow">
-            <Bi en="Curated Flagship Showcases" vi="Dự án kỹ thuật tiêu biểu" />
+      {/* PROJECTS SHOWCASE OR PREPARATION STATE */}
+      {filteredDynamic.length === 0 && filteredCurated.length === 0 ? (
+        <div
+          className="glass-card glow-card animate-fade-in-up"
+          style={{
+            padding: "48px 36px",
+            textAlign: "center",
+            maxWidth: 680,
+            margin: "0 auto",
+            borderRadius: 16,
+          }}
+        >
+          <span
+            className="eyebrow"
+            style={{
+              padding: "4px 12px",
+              borderRadius: 20,
+              background: "rgba(16, 185, 129, 0.1)",
+              border: "1px solid rgba(16, 185, 129, 0.25)",
+              color: "#34d399",
+              display: "inline-block",
+              marginBottom: 16,
+            }}
+          >
+            <Bi en="02 / 05 — Research & Engineering" vi="02 / 05 — Nghiên cứu & Kỹ thuật" />
           </span>
-          <h2 className="serif" style={{ fontSize: 24, margin: "6px 0 0" }}>
-            <Bi en="Architectural Case Studies" vi="Nghiên cứu kiến trúc & Hệ thống" />
-          </h2>
-        </div>
+          <h3 className="serif" style={{ fontSize: "28px", margin: "0 0 12px", color: "var(--ink)" }}>
+            <Bi
+              en="Projects & Case Studies in Preparation."
+              vi="Dự án & Đề tài Nghiên cứu Đang Chuẩn bị."
+            />
+          </h3>
+          <p
+            className="muted"
+            style={{
+              fontSize: "14px",
+              lineHeight: 1.75,
+              maxWidth: 540,
+              margin: "0 auto 28px",
+            }}
+          >
+            <Bi
+              en="Numerical simulation models (Python, MATLAB), circuit schematics (KiCad), 3D designs (FreeCAD), and embedded microcontroller/IoT experiments are currently being compiled. You can manage and publish projects anytime via the Admin Studio."
+              vi="Các mô hình mô phỏng số (Python, MATLAB), thiết kế mạch in (KiCad), mô hình 3D (FreeCAD) và thực nghiệm vi điều khiển / IoT đang được chuẩn bị để đăng tải. Bạn có thể tự thêm hoặc chỉnh sửa dự án qua trang Quản trị."
+            />
+          </p>
 
-        {filteredCurated.length === 0 ? (
-          <div className="empty-state">
-            <span className="eyebrow">00 / 00</span>
-            <h3 className="serif" style={{ fontSize: 26, margin: "12px 0 8px" }}>
-              <Bi en="No matching projects found." vi="Không tìm thấy dự án phù hợp." />
-            </h3>
-            <p className="muted" style={{ margin: "0 auto 20px" }}>
-              <Bi
-                en="Try adjusting your category filter or search keywords."
-                vi="Hãy thử chọn lại danh mục hoặc thay đổi từ khóa tìm kiếm."
-              />
-            </p>
-            <button
-              type="button"
-              className="button button-secondary"
-              onClick={() => {
-                setSelectedCategory("all");
-                setSearchQuery("");
-              }}
-            >
-              <Bi en="Reset Filters" vi="Đặt lại bộ lọc" />
-            </button>
+          <div style={{ display: "flex", justifyContent: "center", gap: 12, flexWrap: "wrap" }}>
+            <a href="/admin" className="button button-primary">
+              <Bi en="Open Admin Studio" vi="Mở Trang Quản trị (/admin)" />
+            </a>
+            <a href="/about" className="button button-outline">
+              <Bi en="View Background & Skills" vi="Xem Nền tảng & Kỹ năng" />
+            </a>
           </div>
-        ) : (
+        </div>
+      ) : (
+        <div>
           <div
             style={{
               display: "grid",
@@ -644,8 +578,8 @@ export function ProjectsExplorer({ dynamicItems = [] }: { dynamicItems?: Post[] 
               </article>
             ))}
           </div>
-        )}
-      </div>
+        </div>
+      )}
     </div>
   );
 }

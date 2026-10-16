@@ -13,15 +13,15 @@ export default async function AchievementsPage() {
       <div className="wrap">
         <header className="page-head animate-fade-in-up" style={{ animationDelay: "0.1s" }}>
           <p className="eyebrow">
-            04 / 05 — <Bi en="Key Milestones & Accolades" vi="Cột mốc & Giải thưởng" />
+            04 / 05 — <Bi en="Academic Milestones & Accolades" vi="Cột mốc Học thuật & Chứng nhận" />
           </p>
           <h1 className="page-title">
             <Bi en="Honors & Achievements." vi="Thành tựu & Vinh danh." />
           </h1>
           <p className="page-intro">
             <Bi
-              en="A record of competitive hackathon victories, cloud architecture certifications, production scaling milestones, and leadership in developer communities."
-              vi="Hồ sơ giải thưởng hackathon, chứng chỉ kiến trúc đám mây quốc tế, cột mốc quy mô hệ thống và hoạt động cố vấn cộng đồng lập trình."
+              en="Academic milestones, computational physics research progress, laboratory experimental credentials, and engineering projects at HCMUS — VNUHCM."
+              vi="Các cột mốc học thuật, nghiên cứu vật lý tin học & tính toán mô phỏng, chứng nhận thực nghiệm và đề tài kỹ thuật tại HCMUS — ĐHQG TP.HCM."
             />
           </p>
         </header>

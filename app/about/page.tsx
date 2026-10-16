@@ -4,7 +4,7 @@ import { SiteShell } from "@/components/site-shell";
 import { Timeline, EXPERIENCE_ITEMS, EDUCATION_ITEMS } from "@/components/timeline";
 import { TechStack } from "@/components/tech-stack";
 import { CopyEmailButton, CONTACT_EMAIL, GITHUB_URL, LINKEDIN_URL, Github, Linkedin } from "@/components/contact-widget";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Phone, Mail, MapPin, GraduationCap, Compass } from "lucide-react";
 
 export default function AboutPage() {
   return (
@@ -23,15 +23,15 @@ export default function AboutPage() {
           >
             <div>
               <p className="eyebrow">
-                <Bi en="01 / 05 — About & Experience" vi="01 / 05 — Giới thiệu & Kinh nghiệm" />
+                <Bi en="01 / 05 — About & Background" vi="01 / 05 — Giới thiệu & Hồ sơ năng lực" />
               </p>
               <h1 className="page-title">
                 <Bi en="About & Curriculum Vitae." vi="Giới thiệu & Sơ yếu lý lịch." />
               </h1>
               <p className="page-intro">
                 <Bi
-                  en="Software engineer passionate about distributed systems, resilient cloud infrastructure, and pixel-precise interfaces."
-                  vi="Kỹ sư phần mềm đam mê hệ thống phân tán, hạ tầng cloud bền bỉ và giao diện người dùng chuẩn xác đến từng pixel."
+                  en="Engineering Physics student at HCMUS (VNU-HCM), specializing in Computational Physics, numerical simulations, and embedded instrumentation."
+                  vi="Sinh viên ngành Vật lý Kỹ thuật (Công nghệ Vật lý) tại HCMUS, chuyên sâu về Vật lý Tin học, tính toán mô phỏng và phần cứng nhúng."
                 />
               </p>
             </div>
@@ -48,7 +48,7 @@ export default function AboutPage() {
             >
               <PrintButton />
               <Link className="button button-primary" href="/contact">
-                <Bi en="Get in touch" vi="Liên hệ trao đổi" />
+                <Bi en="Get in touch" vi="Liên hệ trực tiếp" />
                 <ArrowRight size={14} />
               </Link>
             </div>
@@ -64,26 +64,26 @@ export default function AboutPage() {
           >
             <div>
               <h2 id="about-heading" className="section-label">
-                <Bi en="In Brief & Craft" vi="Tổng quan & Triết lý" />
+                <Bi en="In Brief & Philosophy" vi="Về bản thân & Triết lý" />
               </h2>
             </div>
             <div className="prose">
               <p>
                 <Bi
-                  en="I'm Nguyen Trong Phat, a software engineer based in Ho Chi Minh City, Vietnam. My engineering work is grounded in systems thinking: building reliable services that scale gracefully under pressure, alongside high-precision frontend interfaces that respect user attention."
-                  vi="Tôi là Nguyễn Trọng Phát, một kỹ sư phần mềm sinh sống và làm việc tại TP. Hồ Chí Minh, Việt Nam. Công việc của tôi xuất phát từ tư duy hệ thống: xây dựng các dịch vụ tin cậy, vận hành mượt mà dưới tải lớn, song hành với giao diện frontend chuẩn xác, tôn trọng trải nghiệm người dùng."
+                  en="I'm Nguyen Trong Phat, an Engineering Physics student at VNUHCM — University of Science (HCMUS), cohort 2023 – 2027. My technical focus is Computational Physics, Modeling & Simulation, bridging the gap between rigorous mathematical physics and real-world hardware engineering."
+                  vi="Tôi là Nguyễn Trọng Phát, sinh viên ngành Vật lý Kỹ thuật (Công nghệ Vật lý) tại Trường Đại học Khoa học Tự nhiên, ĐHQG-HCM (HCMUS), niên khóa 2023 – 2027. Hướng chuyên môn của tôi là Vật lý Tin học, Tính toán và Mô phỏng — kết nối giữa nền tảng toán lý với ứng dụng kỹ thuật và phần cứng thực tế."
                 />
               </p>
               <p>
                 <Bi
-                  en="I believe that enduring software is built on clean abstractions, solid database schemas, and thoughtful ergonomics. Whether architecting a distributed task scheduler with Go and Redis or crafting zero-flicker bilingual edge web applications, I value simplicity over cleverness and documentation over tribal knowledge."
-                  vi="Tôi tin rằng một phần mềm bền vững được hình thành từ cấu trúc phân tách rõ ràng, lược đồ dữ liệu chặt chẽ và trải nghiệm người dùng tinh tế. Dù là thiết kế bộ điều phối tác vụ phân tán bằng Go và Redis hay tạo nên ứng dụng edge song ngữ mượt mà, tôi luôn đề cao sự đơn giản và tài liệu hóa chuẩn mực."
+                  en="I am an intrinsically motivated self-learner who thrives on research, systematic problem-solving, and continuous optimization. Whether developing computational algorithms in Python, modeling physical systems in MATLAB, writing high-performance logic in C++, or capturing schematics and laying out PCBs in KiCad, I take pride in understanding systems down to their fundamental principles."
+                  vi="Tôi là người có tinh thần tự học cao, say mê nghiên cứu khoa học, kiên trì giải quyết vấn đề và luôn hướng tới việc tối ưu hóa. Dù là xây dựng thuật toán tính toán bằng Python, mô phỏng hệ vật lý trong MATLAB, viết mã nguồn hiệu năng cao với C++, hay thiết kế sơ đồ mạch in trên KiCad, tôi luôn nỗ lực thấu hiểu cặn kẽ bản chất từ gốc rễ."
                 />
               </p>
               <p>
                 <Bi
-                  en="Outside of writing code, I enjoy breaking down complex computer science concepts, benchmarking database queries, and exploring edge computing runtimes."
-                  vi="Ngoài việc viết code, tôi yêu thích việc nghiên cứu các khái niệm khoa học máy tính chuyên sâu, đo lường tối ưu câu lệnh cơ sở dữ liệu và thử nghiệm các runtime tính toán tại biên (edge computing)."
+                  en="I am actively seeking internship and fresher opportunities where I can apply my computational modeling, embedded programming, and hardware prototyping skills to real engineering projects, learn from experienced mentors, and contribute meaningfully to the team."
+                  vi="Tôi đang tích cực tìm kiếm các cơ hội thực tập (Internship) và vị trí Fresher để áp dụng kiến thức mô phỏng tính toán, lập trình nhúng và kỹ năng đo kiểm phần cứng vào các dự án kỹ thuật thực tế, học hỏi từ các chuyên gia và đóng góp cho tổ chức."
                 />
               </p>
             </div>
@@ -91,44 +91,20 @@ export default function AboutPage() {
 
           <hr className="rule" style={{ margin: "56px 0 46px" }} />
 
-          {/* SECTION 2: EXPERIENCE TIMELINE */}
-          <section
-            className="editorial-grid animate-fade-in-up"
-            aria-labelledby="experience-heading"
-            style={{ animationDelay: "0.2s" }}
-          >
-            <div>
-              <h2 id="experience-heading" className="section-label">
-                <Bi en="Experience" vi="Kinh nghiệm làm việc" />
-              </h2>
-              <p className="muted" style={{ fontSize: 13, marginTop: 8 }}>
-                <Bi
-                  en="Roles, impact metrics, and core responsibilities."
-                  vi="Vai trò, kết quả đạt được và trách nhiệm chuyên môn."
-                />
-              </p>
-            </div>
-            <div>
-              <Timeline items={EXPERIENCE_ITEMS} />
-            </div>
-          </section>
-
-          <hr className="rule" style={{ margin: "56px 0 46px" }} />
-
-          {/* SECTION 3: EDUCATION & HONORS */}
+          {/* SECTION 2: EDUCATION */}
           <section
             className="editorial-grid animate-fade-in-up"
             aria-labelledby="education-heading"
-            style={{ animationDelay: "0.25s" }}
+            style={{ animationDelay: "0.2s" }}
           >
             <div>
               <h2 id="education-heading" className="section-label">
-                <Bi en="Education & Honors" vi="Học vấn & Thành tựu" />
+                <Bi en="Education" vi="Học vấn & Đào tạo" />
               </h2>
               <p className="muted" style={{ fontSize: 13, marginTop: 8 }}>
                 <Bi
-                  en="Academic foundation and computer science coursework."
-                  vi="Nền tảng học thuật và các môn học khoa học máy tính trọng tâm."
+                  en="University degree, major concentration, and GPA."
+                  vi="Bằng cấp đại học, chuyên ngành và điểm tích lũy."
                 />
               </p>
             </div>
@@ -139,25 +115,49 @@ export default function AboutPage() {
 
           <hr className="rule" style={{ margin: "56px 0 46px" }} />
 
-          {/* SECTION 4: CORE TECHNICAL COMPETENCIES */}
+          {/* SECTION 3: SKILLS */}
           <section
             className="editorial-grid animate-fade-in-up"
             aria-labelledby="skills-heading"
-            style={{ animationDelay: "0.3s" }}
+            style={{ animationDelay: "0.25s" }}
           >
             <div>
               <h2 id="skills-heading" className="section-label">
-                <Bi en="Technical Skills" vi="Kỹ năng chuyên môn" />
+                <Bi en="Technical Tooling" vi="Công cụ Kỹ thuật" />
               </h2>
               <p className="muted" style={{ fontSize: 13, marginTop: 8 }}>
                 <Bi
-                  en="Categorized breakdown of languages, frameworks, and infrastructure."
-                  vi="Phân loại chi tiết các ngôn ngữ, framework và hạ tầng công nghệ."
+                  en="Programming, scientific software, CAD, and laboratory instruments."
+                  vi="Ngôn ngữ lập trình, phần mềm khoa học, CAD và thiết bị đo kiểm."
                 />
               </p>
             </div>
             <div>
               <TechStack filterInteractive={true} />
+            </div>
+          </section>
+
+          <hr className="rule" style={{ margin: "56px 0 46px" }} />
+
+          {/* SECTION 4: EXPERIENCE & OBJECTIVES */}
+          <section
+            className="editorial-grid animate-fade-in-up"
+            aria-labelledby="experience-heading"
+            style={{ animationDelay: "0.3s" }}
+          >
+            <div>
+              <h2 id="experience-heading" className="section-label">
+                <Bi en="Journey & Goals" vi="Hành trình & Mục tiêu" />
+              </h2>
+              <p className="muted" style={{ fontSize: 13, marginTop: 8 }}>
+                <Bi
+                  en="Academic activities and prospective internship domains."
+                  vi="Hoạt động học tập và các lĩnh vực thực tập hướng tới."
+                />
+              </p>
+            </div>
+            <div>
+              <Timeline items={EXPERIENCE_ITEMS} />
             </div>
           </section>
 
@@ -171,7 +171,7 @@ export default function AboutPage() {
           >
             <div>
               <h2 id="cv-heading" className="section-label">
-                <Bi en="Key Information" vi="Thông tin cơ bản" />
+                <Bi en="Key Information" vi="Thông tin liên hệ" />
               </h2>
             </div>
             <div>
@@ -180,111 +180,82 @@ export default function AboutPage() {
                   <dt>
                     <Bi en="Full Name" vi="Họ và tên" />
                   </dt>
-                  <dd style={{ fontWeight: 600 }}>Nguyen Trong Phat</dd>
+                  <dd style={{ fontWeight: 600 }}>Nguyen Trong Phat (Nguyễn Trọng Phát)</dd>
                 </div>
                 <div className="cv-row">
                   <dt>
-                    <Bi en="Location / Timezone" vi="Địa điểm / Múi giờ" />
+                    <Bi en="University" vi="Trường Đại học" />
                   </dt>
                   <dd>
                     <Bi
-                      en="Ho Chi Minh City, Vietnam · UTC+7 (Indochina Time)"
-                      vi="TP. Hồ Chí Minh, Việt Nam · UTC+7 (Giờ Đông Dương)"
+                      en="VNUHCM — University of Science (HCMUS) · Cohort 2023 — 2027"
+                      vi="Trường ĐH Khoa học Tự nhiên, ĐHQG-HCM · Niên khóa 2023 — 2027"
                     />
                   </dd>
                 </div>
                 <div className="cv-row">
                   <dt>
-                    <Bi en="Focus Disciplines" vi="Lĩnh vực trọng tâm" />
+                    <Bi en="Major & Specialization" vi="Chuyên ngành" />
                   </dt>
                   <dd>
                     <Bi
-                      en="Full-Stack Systems, Distributed Worker Queues, Edge Runtimes, Clean Architecture"
-                      vi="Hệ thống Full-Stack, Hàng đợi xử lý phân tán, Edge Runtimes, Kiến trúc mã sạch"
+                      en="Engineering Physics · Computational Physics & Simulation"
+                      vi="Vật lý Kỹ thuật · Vật lý Tin học, Tính toán & Mô phỏng"
                     />
                   </dd>
                 </div>
                 <div className="cv-row">
                   <dt>
-                    <Bi en="Spoken Languages" vi="Ngôn ngữ" />
+                    <Bi en="Academic GPA" vi="Điểm tích lũy" />
                   </dt>
-                  <dd>
-                    <Bi
-                      en="Vietnamese (Native), English (Professional Working Proficiency)"
-                      vi="Tiếng Việt (Bản ngữ), Tiếng Anh (Giao tiếp chuyên môn thành thạo)"
-                    />
+                  <dd style={{ fontFamily: "monospace", color: "#34d399", fontWeight: 600 }}>
+                    3.08 / 4.0
                   </dd>
                 </div>
                 <div className="cv-row">
-                  <dt>Email</dt>
+                  <dt>
+                    <Bi en="Phone Number" vi="Số điện thoại" />
+                  </dt>
+                  <dd>
+                    <a href="tel:+84797190605" style={{ color: "var(--accent-ink)", fontWeight: 500 }}>
+                      +84 797 190 605
+                    </a>
+                  </dd>
+                </div>
+                <div className="cv-row">
+                  <dt>
+                    <Bi en="Email Address" vi="Thư điện tử" />
+                  </dt>
                   <dd style={{ display: "flex", alignItems: "center", gap: 10, flexWrap: "wrap" }}>
-                    <a
-                      href={`mailto:${CONTACT_EMAIL}`}
-                      style={{
-                        textDecoration: "underline",
-                        textUnderlineOffset: 3,
-                        fontFamily: "var(--font-mono)",
-                        color: "var(--accent-ink)",
-                      }}
-                    >
-                      {CONTACT_EMAIL}
+                    <a href="mailto:phatnguyen1962005@gmail.com" style={{ color: "var(--ink)" }}>
+                      phatnguyen1962005@gmail.com
                     </a>
-                    <div className="no-print">
-                      <CopyEmailButton />
-                    </div>
+                    <CopyEmailButton />
                   </dd>
                 </div>
                 <div className="cv-row">
                   <dt>
-                    <Bi en="Public Profiles" vi="Hồ sơ công khai" />
+                    <Bi en="Location" vi="Khu vực làm việc" />
                   </dt>
-                  <dd style={{ display: "flex", gap: 18, flexWrap: "wrap" }}>
-                    <a
-                      href={GITHUB_URL}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      style={{
-                        display: "inline-flex",
-                        alignItems: "center",
-                        gap: 6,
-                        color: "var(--ink)",
-                      }}
-                    >
-                      <Github size={14} />
-                      <span>GitHub ↗</span>
-                    </a>
-                    <a
-                      href={LINKEDIN_URL}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      style={{
-                        display: "inline-flex",
-                        alignItems: "center",
-                        gap: 6,
-                        color: "var(--ink)",
-                      }}
-                    >
-                      <Linkedin size={14} />
-                      <span>LinkedIn ↗</span>
-                    </a>
+                  <dd>
+                    <Bi
+                      en="Ho Chi Minh City, Vietnam (Open to On-site, Hybrid, Remote)"
+                      vi="TP. Hồ Chí Minh, Việt Nam (Linh hoạt Trực tiếp, Hybrid, Từ xa)"
+                    />
+                  </dd>
+                </div>
+                <div className="cv-row">
+                  <dt>
+                    <Bi en="Target Roles" vi="Vị trí ứng tuyển" />
+                  </dt>
+                  <dd>
+                    <Bi
+                      en="Computational Physics / Simulation Intern · Embedded Systems & IoT Intern · Hardware & Firmware Prototyping · R&D Engineering Intern"
+                      vi="Thực tập sinh Mô phỏng Tính toán · Kỹ sư Thực tập Nhúng & IoT · Thiết kế Phần cứng KiCad / Firmware · Thực tập sinh R&D"
+                    />
                   </dd>
                 </div>
               </dl>
-
-              <p className="about-note">
-                <Bi
-                  en="Engineering with intentionality: striving for code that is simple to understand, predictable in execution, and resilient when failure occurs."
-                  vi="Kỹ thuật phần mềm có chủ đích: hướng tới những dòng mã dễ hiểu, hoạt động dự đoán được và luôn kiên cường trước mọi sự cố."
-                />
-              </p>
-
-              <div className="no-print" style={{ marginTop: 36, display: "flex", gap: 14, flexWrap: "wrap" }}>
-                <PrintButton />
-                <Link className="button button-secondary" href="/projects">
-                  <Bi en="Explore Selected Work" vi="Xem dự án chọn lọc" />
-                  <span aria-hidden="true">↗</span>
-                </Link>
-              </div>
             </div>
           </section>
         </div>

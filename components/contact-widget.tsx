@@ -5,6 +5,7 @@ import {
   Clock,
   MapPin,
   Mail,
+  Phone,
   Copy,
   Check,
   Send,
@@ -18,6 +19,8 @@ import {
 import { Bi } from "./language-switch";
 
 export const CONTACT_EMAIL = "phatnguyen1962005@gmail.com";
+export const CONTACT_PHONE = "+84 797 190 605";
+export const CONTACT_PHONE_RAW = "+84797190605";
 export const GITHUB_URL = "https://github.com/phatnguyen196-solverboiz";
 export const LINKEDIN_URL = "https://www.linkedin.com/in/tr%E1%BB%8Dng-ph%C3%A1t-nguy%E1%BB%85n-6714412bb/";
 
@@ -600,6 +603,39 @@ export function ContactWidget() {
                 </span>
               </div>
               <CopyEmailButton />
+            </div>
+
+            {/* Phone direct call */}
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "space-between",
+                padding: "12px 14px",
+                background: "rgba(255, 255, 255, 0.02)",
+                border: "1px solid rgba(255, 255, 255, 0.06)",
+                borderRadius: 8,
+              }}
+            >
+              <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
+                <Phone size={16} style={{ color: "#34d399" }} />
+                <span
+                  style={{
+                    fontSize: 13,
+                    fontFamily: "var(--font-mono)",
+                    color: "var(--ink)",
+                  }}
+                >
+                  {CONTACT_PHONE}
+                </span>
+              </div>
+              <a
+                href={`tel:${CONTACT_PHONE_RAW}`}
+                className="button-sm button-secondary"
+                style={{ fontSize: 11, padding: "4px 10px", textDecoration: "none" }}
+              >
+                <Bi en="Call" vi="Gọi điện" />
+              </a>
             </div>
 
             {/* GitHub */}

@@ -3,19 +3,11 @@
 import React, { useState } from "react";
 import {
   Code2,
-  Layout,
-  Server,
-  Database,
-  Terminal,
   Cpu,
   Layers,
   Sparkles,
-  GitBranch,
-  Boxes,
-  Workflow,
-  ShieldCheck,
-  Container,
-  Cloud,
+  Compass,
+  Activity,
 } from "lucide-react";
 import { Bi } from "./language-switch";
 
@@ -37,56 +29,39 @@ export interface SkillCategory {
 export const SKILL_CATEGORIES: SkillCategory[] = [
   {
     id: "languages",
-    titleEn: "Programming Languages",
-    titleVi: "Ngôn ngữ lập trình",
+    titleEn: "Programming & Scientific Computing",
+    titleVi: "Ngôn ngữ Lập trình & Tính toán",
     icon: <Code2 className="skills-category-icon" size={16} />,
     skills: [
-      { name: "TypeScript", badge: "Primary", badgeVi: "Chính", highlight: true },
-      { name: "JavaScript", badge: "ES2024", badgeVi: "ES2024" },
-      { name: "Python", badge: "Data & ML", badgeVi: "Dữ liệu & ML" },
-      { name: "Go", badge: "Systems", badgeVi: "Hệ thống", highlight: true },
-      { name: "SQL", badge: "Relational", badgeVi: "Quan hệ" },
-      { name: "HTML5 / CSS3", badge: "Semantic", badgeVi: "Tiêu chuẩn" },
+      { name: "Python", badge: "Primary", badgeVi: "Chính", highlight: true },
+      { name: "MATLAB", badge: "Simulation", badgeVi: "Mô phỏng", highlight: true },
+      { name: "C++", badge: "Core", badgeVi: "Nền tảng", highlight: true },
+      { name: "JavaScript", badge: "Web/Script", badgeVi: "Web/Script" },
+      { name: "HTML5 / CSS3", badge: "Interface", badgeVi: "Giao diện" },
     ],
   },
   {
-    id: "frontend",
-    titleEn: "Frontend & UI Engineering",
-    titleVi: "Kỹ thuật giao diện Frontend",
-    icon: <Layout className="skills-category-icon" size={16} />,
+    id: "simulation_cad",
+    titleEn: "Engineering Software & CAD",
+    titleVi: "Phần mềm Kỹ thuật, Mô phỏng & CAD",
+    icon: <Layers className="skills-category-icon" size={16} />,
     skills: [
-      { name: "React 19", badge: "Core", badgeVi: "Cốt lõi", highlight: true },
-      { name: "Next.js 16", badge: "App Router", badgeVi: "App Router", highlight: true },
-      { name: "Tailwind CSS 4", badge: "Styling", badgeVi: "Thiết kế" },
-      { name: "Radix UI", badge: "Accessible", badgeVi: "Tiếp cận" },
-      { name: "Vite", badge: "Bundler", badgeVi: "Build tool" },
+      { name: "KiCad", badge: "PCB Design", badgeVi: "Thiết kế mạch", highlight: true },
+      { name: "OriginLab", badge: "Data & Graphs", badgeVi: "Xử lý dữ liệu", highlight: true },
+      { name: "FreeCAD", badge: "3D Modeling", badgeVi: "Dựng hình 3D", highlight: true },
+      { name: "Google Colab", badge: "Cloud Compute", badgeVi: "Điện toán đám mây" },
     ],
   },
   {
-    id: "backend",
-    titleEn: "Backend & Systems",
-    titleVi: "Hệ thống & Dịch vụ Backend",
-    icon: <Server className="skills-category-icon" size={16} />,
+    id: "hardware_embedded",
+    titleEn: "Hardware, Instrumentation & IoT",
+    titleVi: "Phần cứng, Thiết bị đo & Nhúng IoT",
+    icon: <Cpu className="skills-category-icon" size={16} />,
     skills: [
-      { name: "Node.js", badge: "Runtime", badgeVi: "Runtime", highlight: true },
-      { name: "Express / Fastify", badge: "Services", badgeVi: "Dịch vụ" },
-      { name: "RESTful APIs", badge: "Architecture", badgeVi: "Kiến trúc" },
-      { name: "GraphQL", badge: "APIs", badgeVi: "API" },
-      { name: "Drizzle ORM", badge: "Type-Safe", badgeVi: "Type-Safe", highlight: true },
-    ],
-  },
-  {
-    id: "devops",
-    titleEn: "Databases & DevOps",
-    titleVi: "Cơ sở dữ liệu & DevOps",
-    icon: <Database className="skills-category-icon" size={16} />,
-    skills: [
-      { name: "PostgreSQL", badge: "ACID", badgeVi: "ACID", highlight: true },
-      { name: "SQLite / D1", badge: "Edge DB", badgeVi: "Edge DB" },
-      { name: "Cloudflare Workers", badge: "Edge Runtime", badgeVi: "Edge Runtime", highlight: true },
-      { name: "Docker", badge: "Containers", badgeVi: "Container" },
-      { name: "Git & CI/CD", badge: "Actions", badgeVi: "Tự động hóa" },
-      { name: "Linux", badge: "Operations", badgeVi: "Vận hành" },
+      { name: "Dao động ký (Oscilloscope)", badge: "Measurement", badgeVi: "Đo kiểm tín hiệu", highlight: true },
+      { name: "Vi điều khiển (MCU)", badge: "Firmware", badgeVi: "Lập trình vi điều khiển", highlight: true },
+      { name: "Hệ thống nhúng (Embedded)", badge: "C/C++", badgeVi: "Hệ thống nhúng" },
+      { name: "Cảm biến & IoT", badge: "Hardware", badgeVi: "Thiết bị & Cảm biến", highlight: true },
     ],
   },
 ];
@@ -110,9 +85,8 @@ export function TechStack({
       : SKILL_CATEGORIES.filter((c) => c.id === selectedCategory);
 
   if (compact) {
-    // Flattened top highlights for homepage or quick glance
     const highlightedSkills = SKILL_CATEGORIES.flatMap((c) =>
-      c.skills.filter((s) => s.highlight || ["TypeScript", "Next.js 16", "React 19", "Go", "PostgreSQL", "Docker"].includes(s.name))
+      c.skills.filter((s) => s.highlight || ["Python", "MATLAB", "C++", "KiCad", "OriginLab", "FreeCAD", "Dao động ký (Oscilloscope)", "Vi điều khiển (MCU)"].includes(s.name))
     );
 
     return (
@@ -158,55 +132,30 @@ export function TechStack({
         </div>
       )}
 
-      {categoriesToRender.map((category) => (
-        <div key={category.id} className="skills-category">
-          <div className="skills-category-header">
-            {category.icon}
-            <h3 className="skills-category-title" style={{ margin: 0 }}>
-              <Bi en={category.titleEn} vi={category.titleVi} />
-            </h3>
-            <span
-              className="badge badge-sm badge-outline muted"
-              style={{ marginLeft: "auto", fontSize: 10 }}
-            >
-              {category.skills.length} <Bi en="technologies" vi="công nghệ" />
-            </span>
+      <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: 24 }}>
+        {categoriesToRender.map((cat) => (
+          <div key={cat.id} className="glass-card glow-card" style={{ padding: "24px 22px" }}>
+            <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 18 }}>
+              {cat.icon}
+              <h3 style={{ fontSize: 16, margin: 0, fontWeight: 600, color: "var(--ink)" }}>
+                <Bi en={cat.titleEn} vi={cat.titleVi} />
+              </h3>
+            </div>
+            <div style={{ display: "flex", flexWrap: "wrap", gap: 8 }}>
+              {cat.skills.map((skill) => (
+                <div key={skill.name} className="skill-pill" style={{ fontSize: 12.5 }}>
+                  <span>{skill.name}</span>
+                  {skill.badge && (
+                    <span className="badge badge-sm badge-outline" style={{ fontSize: 9 }}>
+                      <Bi en={skill.badge} vi={skill.badgeVi || skill.badge} />
+                    </span>
+                  )}
+                </div>
+              ))}
+            </div>
           </div>
-
-          <div className="skills-grid">
-            {category.skills.map((skill) => (
-              <div
-                key={skill.name}
-                className="skill-pill"
-                title={`${skill.name} (${skill.badge || "Skill"})`}
-              >
-                <div
-                  style={{
-                    width: 6,
-                    height: 6,
-                    borderRadius: "50%",
-                    background: skill.highlight ? "var(--accent-ink)" : "rgba(255, 255, 255, 0.3)",
-                    flexShrink: 0,
-                  }}
-                />
-                <span style={{ fontWeight: skill.highlight ? 600 : 500 }}>
-                  {skill.name}
-                </span>
-                {skill.badge && (
-                  <span
-                    className={`badge badge-sm ${
-                      skill.highlight ? "badge-accent" : "badge-outline"
-                    }`}
-                    style={{ marginLeft: "auto", fontSize: 9 }}
-                  >
-                    <Bi en={skill.badge} vi={skill.badgeVi || skill.badge} />
-                  </span>
-                )}
-              </div>
-            ))}
-          </div>
-        </div>
-      ))}
+        ))}
+      </div>
     </div>
   );
 }
