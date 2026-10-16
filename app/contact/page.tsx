@@ -1,47 +1,153 @@
 import { Bi } from "@/components/language-switch";
 import { SiteShell } from "@/components/site-shell";
-
-const contacts = [
-  { label: "Email", text: "phatnguyen1962005@gmail.com", href: "mailto:phatnguyen1962005@gmail.com" },
-  { label: "GitHub", text: "phatnguyen196-solverboiz", href: "https://github.com/phatnguyen196-solverboiz" },
-  { label: "LinkedIn", text: "Nguyen Trong Phat", href: "https://www.linkedin.com/in/tr%E1%BB%8Dng-ph%C3%A1t-nguy%E1%BB%85n-6714412bb/" },
-];
+import { ContactWidget } from "@/components/contact-widget";
+import { MessageSquare, ShieldCheck, Zap } from "lucide-react";
 
 export default function ContactPage() {
   return (
     <SiteShell>
       <div className="wrap">
+        {/* PAGE HEADER */}
         <header className="page-head animate-fade-in-up" style={{ animationDelay: "0.1s" }}>
-          <p className="eyebrow"><Bi en="04 / Contact" vi="04 / Liên hệ" /></p>
-          <h1 className="page-title"><Bi en="Let's connect." vi="Kết nối nhé." /></h1>
+          <div
+            className="status-pill animate-fade-in-up"
+            style={{ animationDelay: "0.05s", marginBottom: 16, display: "inline-flex" }}
+          >
+            <span className="status-dot status-online" />
+            <span>
+              <Bi
+                en="Available for Software Engineering Roles"
+                vi="Sẵn sàng cho các cơ hội kỹ sư phần mềm"
+              />
+            </span>
+            <span
+              className="badge badge-sm badge-outline"
+              style={{ marginLeft: 6, fontSize: 10, padding: "1px 6px" }}
+            >
+              GMT+7
+            </span>
+          </div>
+
+          <p className="eyebrow">
+            <Bi en="04 / Contact & Direct Inquiries" vi="04 / Liên hệ & Trao đổi trực tiếp" />
+          </p>
+          <h1 className="page-title">
+            <Bi en="Let's connect." vi="Kết nối nhé." />
+          </h1>
           <p className="page-intro">
             <Bi
-              en="For a conversation about work, an idea, or a technical question, the best way to reach me is by email."
-              vi="Để trao đổi về công việc, một ý tưởng hoặc câu hỏi kỹ thuật, cách tốt nhất để liên hệ với tôi là qua email."
+              en="Whether you're exploring full-time engineering opportunities, technical advisory, or open-source collaborations, I'm always glad to talk."
+              vi="Dù bạn đang tìm kiếm kỹ sư full-stack toàn thời gian, trao đổi tư vấn kỹ thuật hay hợp tác mã nguồn mở, tôi luôn sẵn sàng lắng nghe."
             />
           </p>
         </header>
-        <div className="contact-main">
-          <p className="contact-lead animate-fade-in-up" style={{ animationDelay: "0.2s" }}>
-            <Bi en="Good conversations often start with a simple note." vi="Một cuộc trò chuyện hay thường bắt đầu bằng một lời nhắn." />
-          </p>
-          <div className="contact-list">
-            {contacts.map((contact, idx) => (
-              <a
-                className="contact-row animate-fade-in-up"
-                href={contact.href}
-                key={contact.label}
-                target={contact.href.startsWith("mailto:") ? undefined : "_blank"}
-                rel={contact.href.startsWith("mailto:") ? undefined : "noopener noreferrer"}
-                style={{ animationDelay: `${0.3 + idx * 0.1}s` }}
+
+        {/* 2-COLUMN CONTACT INTERACTION */}
+        <section className="page-content" aria-label="Contact information and inquiry form">
+          <ContactWidget />
+
+          {/* COLLABORATION PRINCIPLES CARD */}
+          <div
+            className="glass-card animate-fade-in-up"
+            style={{
+              marginTop: 48,
+              padding: "32px 28px",
+              display: "grid",
+              gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))",
+              gap: 28,
+            }}
+          >
+            <div>
+              <div
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  gap: 8,
+                  marginBottom: 8,
+                  color: "var(--accent-ink)",
+                }}
               >
-                <span className="label">{contact.label}</span>
-                <span className="value">{contact.text}</span>
-                <span className="arrow" aria-hidden="true">↗</span>
-              </a>
-            ))}
+                <Zap size={16} />
+                <h4 style={{ margin: 0, fontSize: 14, fontWeight: 700 }}>
+                  <Bi en="Fast Response Time" vi="Phản hồi nhanh chóng" />
+                </h4>
+              </div>
+              <p
+                style={{
+                  margin: 0,
+                  fontSize: 13,
+                  lineHeight: 1.65,
+                  color: "rgba(232, 230, 227, 0.75)",
+                }}
+              >
+                <Bi
+                  en="I monitor incoming messages closely. Expect a thoughtful reply within 2 to 4 hours during working hours (08:00 — 22:00 GMT+7)."
+                  vi="Tôi thường xuyên kiểm tra hòm thư. Bạn sẽ nhận được phản hồi chi tiết trong vòng 2 đến 4 giờ làm việc (08:00 — 22:00 GMT+7)."
+                />
+              </p>
+            </div>
+
+            <div>
+              <div
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  gap: 8,
+                  marginBottom: 8,
+                  color: "var(--accent-ink)",
+                }}
+              >
+                <MessageSquare size={16} />
+                <h4 style={{ margin: 0, fontSize: 14, fontWeight: 700 }}>
+                  <Bi en="Async & Written-First" vi="Giao tiếp bất đồng bộ" />
+                </h4>
+              </div>
+              <p
+                style={{
+                  margin: 0,
+                  fontSize: 13,
+                  lineHeight: 1.65,
+                  color: "rgba(232, 230, 227, 0.75)",
+                }}
+              >
+                <Bi
+                  en="Clear written context, reproducible examples, and structured agendas help us move faster and make decisions efficiently."
+                  vi="Bối cảnh rõ ràng bằng văn bản, ví dụ cụ thể và nội dung cô đọng giúp công việc tiến triển nhanh chóng và chuẩn xác."
+                />
+              </p>
+            </div>
+
+            <div>
+              <div
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  gap: 8,
+                  marginBottom: 8,
+                  color: "var(--accent-ink)",
+                }}
+              >
+                <ShieldCheck size={16} />
+                <h4 style={{ margin: 0, fontSize: 14, fontWeight: 700 }}>
+                  <Bi en="Engineering Standards" vi="Tiêu chuẩn kỹ thuật" />
+                </h4>
+              </div>
+              <p
+                style={{
+                  margin: 0,
+                  fontSize: 13,
+                  lineHeight: 1.65,
+                  color: "rgba(232, 230, 227, 0.75)",
+                }}
+              >
+                <Bi
+                  en="Dedicated to code craftsmanship, typed contracts, comprehensive automated testing, and zero-compromise security."
+                  vi="Cam kết chất lượng mã nguồn, ràng buộc kiểu dữ liệu chặt chẽ, kiểm thử tự động toàn diện và bảo mật an toàn."
+                />
+              </p>
+            </div>
           </div>
-        </div>
+        </section>
       </div>
     </SiteShell>
   );

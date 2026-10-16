@@ -4,10 +4,21 @@ import { useEffect, useState } from "react";
 
 type Language = "en" | "vi";
 
-function setLanguage(next: Language) {
-  document.documentElement.dataset.lang = next;
-  document.documentElement.lang = next;
-  window.localStorage.setItem("portfolio-language", next);
+export function setGlobalLanguage(next: Language) {
+  if (typeof document !== "undefined") {
+    document.documentElement.dataset.lang = next;
+    document.documentElement.lang = next;
+    window.localStorage.setItem("portfolio-language", next);
+    window.dispatchEvent(new CustomEvent("portfolio-language-change", { detail: next }));
+  }
+}
+
+export function toggleGlobalLanguage(): Language {
+  if (typeof document === "undefined") return "en";
+  const current = (document.documentElement.dataset.lang as Language) || "en";
+  const next: Language = current === "vi" ? "en" : "vi";
+  setGlobalLanguage(next);
+  return next;
 }
 
 export function LanguageSwitch() {
@@ -17,7 +28,14 @@ export function LanguageSwitch() {
     const stored = window.localStorage.getItem("portfolio-language");
     const next: Language = stored === "vi" ? "vi" : "en";
     updateLanguage(next);
-    setLanguage(next);
+    setGlobalLanguage(next);
+
+    const handleLangChange = () => {
+      const current = (document.documentElement.dataset.lang as Language) || "en";
+      updateLanguage(current);
+    };
+    window.addEventListener("portfolio-language-change", handleLangChange);
+    return () => window.removeEventListener("portfolio-language-change", handleLangChange);
   }, []);
 
   return (
@@ -26,9 +44,7 @@ export function LanguageSwitch() {
       type="button"
       aria-label={language === "en" ? "Switch to Vietnamese" : "Chuyển sang tiếng Anh"}
       onClick={() => {
-        const next = language === "en" ? "vi" : "en";
-        updateLanguage(next);
-        setLanguage(next);
+        toggleGlobalLanguage();
       }}
     >
       <span className={language === "en" ? "selected" : undefined}>EN</span>

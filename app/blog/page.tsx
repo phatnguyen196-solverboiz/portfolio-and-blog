@@ -1,46 +1,33 @@
 import { Bi } from "@/components/language-switch";
-import { PostList } from "@/components/post-list";
 import { SiteShell } from "@/components/site-shell";
+import { BlogExplorer } from "@/components/blog-explorer";
 import { publishedPosts } from "@/lib/content";
 
 export const dynamic = "force-dynamic";
 
 export default async function BlogPage() {
   const items = await publishedPosts("blog");
+
   return (
     <SiteShell>
       <div className="wrap">
         <header className="page-head animate-fade-in-up" style={{ animationDelay: "0.1s" }}>
           <p className="eyebrow">
-            03 / 04 — <Bi en="Engineering notes" vi="Ghi chép kỹ thuật" />
+            03 / 04 — <Bi en="Engineering notes & Deep-dives" vi="Ghi chép kỹ thuật & Phân tích" />
           </p>
           <h1 className="page-title">
             <Bi en="Technical Writing." vi="Chia sẻ kỹ thuật." />
           </h1>
           <p className="page-intro">
             <Bi
-              en="Practical posts about building software: design choices, implementation details, and lessons worth keeping."
-              vi="Bài viết thực tế về xây dựng phần mềm: lựa chọn thiết kế, chi tiết triển khai và kiến thức đáng lưu lại."
+              en="Practical articles on building resilient software: system architecture, database optimization, edge runtimes, and engineering craft."
+              vi="Bài viết thực tế về xây dựng phần mềm bền bỉ: kiến trúc hệ thống, tối ưu cơ sở dữ liệu, edge runtimes và chuẩn mực kỹ thuật."
             />
           </p>
         </header>
+
         <section className="page-content" aria-label="Technical writing">
-          {items.length ? (
-            <PostList items={items} />
-          ) : (
-            <div className="empty-state animate-fade-in-up" style={{ animationDelay: "0.2s" }}>
-              <span className="eyebrow">00 / 00</span>
-              <h2>
-                <Bi en="Notes are on the way." vi="Bài viết sẽ sớm xuất hiện." />
-              </h2>
-              <p>
-                <Bi
-                  en="This space is reserved for technical explanations and useful references."
-                  vi="Không gian này dành cho giải thích kỹ thuật và tài liệu tham khảo hữu ích."
-                />
-              </p>
-            </div>
-          )}
+          <BlogExplorer dynamicPosts={items} />
         </section>
       </div>
     </SiteShell>

@@ -3,7 +3,9 @@
 import { useState, useEffect, type ReactNode } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { Search } from "lucide-react";
 import { Bi, LanguageSwitch } from "./language-switch";
+import { CommandMenu } from "./command-menu";
 
 const navigation = [
   { href: "/about", en: "About / CV", vi: "Giới thiệu / CV" },
@@ -15,6 +17,7 @@ const navigation = [
 export function SiteShell({ children }: { children: ReactNode }) {
   const pathname = usePathname();
   const [menuOpen, setMenuOpen] = useState(false);
+  const [commandOpen, setCommandOpen] = useState(false);
 
   useEffect(() => {
     setMenuOpen(false);
@@ -22,6 +25,7 @@ export function SiteShell({ children }: { children: ReactNode }) {
 
   return (
     <div className="site-shell">
+      <CommandMenu open={commandOpen} onOpenChange={setCommandOpen} />
       <header className="site-header">
         <div className="wrap header-inner">
           <Link href="/" className="wordmark" aria-label="Nguyen Trong Phat, home">
@@ -55,8 +59,38 @@ export function SiteShell({ children }: { children: ReactNode }) {
                 </Link>
               );
             })}
+            {/* Quick search button inside mobile menu */}
+            {menuOpen && (
+              <button
+                type="button"
+                className="button-secondary button-sm no-print"
+                style={{ marginTop: 12, width: "100%", justifyContent: "space-between" }}
+                onClick={() => {
+                  setMenuOpen(false);
+                  setCommandOpen(true);
+                }}
+              >
+                <span style={{ display: "inline-flex", alignItems: "center", gap: 8 }}>
+                  <Search size={14} />
+                  <Bi en="Search & Commands" vi="Tìm kiếm & Thao tác" />
+                </span>
+                <span className="cmd-shortcut">⌘K</span>
+              </button>
+            )}
           </nav>
-          <LanguageSwitch />
+          <div style={{ display: "inline-flex", alignItems: "center", gap: 8 }}>
+            <button
+              className="button-secondary button-sm no-print"
+              onClick={() => setCommandOpen(true)}
+              title="Quick actions (⌘K)"
+              type="button"
+              aria-label="Quick actions (Command+K)"
+            >
+              <Search size={14} />
+              <span className="cmd-shortcut">⌘K</span>
+            </button>
+            <LanguageSwitch />
+          </div>
           <button
             type="button"
             className={`mobile-menu-btn ${menuOpen ? "open" : ""}`}
