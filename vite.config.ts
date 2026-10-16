@@ -9,32 +9,43 @@ const SITE_CREATOR_PLACEHOLDER_DATABASE_ID =
   "00000000-0000-4000-8000-000000000000";
 
 const { d1, r2 } = hostingConfig;
+const d1DatabaseId =
+  process.env.CLOUDFLARE_D1_DATABASE_ID ||
+  process.env.D1_DATABASE_ID ||
+  "";
 
 // macOS Seatbelt blocks FSEvents, so Codex previews need polling for HMR.
 const isCodexSeatbeltSandbox = process.env.CODEX_SANDBOX === "seatbelt";
 const managedLinux = readExecutionProfile() === "managed-linux";
 
-const localBindingConfig = {
-  main: "./build/sites-worker.ts",
-  compatibility_flags: ["nodejs_compat"],
-  d1_databases: d1
-    ? [
-        {
-          binding: d1,
-          database_name: "site-creator-d1",
-          database_id: SITE_CREATOR_PLACEHOLDER_DATABASE_ID,
-        },
-      ]
-    : [],
-  r2_buckets: r2
-    ? [
-        {
-          binding: r2,
-          bucket_name: "site-creator-r2",
-        },
-      ]
-    : [],
-};
+function getBindingConfig(command: string) {
+  // If in dev mode ('serve'), allow placeholder for local Miniflare SQLite simulation.
+  // In production build ('build'), only bind D1 if an actual real database ID is provided.
+  const hasRealD1 = Boolean(d1DatabaseId && d1DatabaseId !== SITE_CREATOR_PLACEHOLDER_DATABASE_ID);
+  const includeD1 = d1 && (command === "serve" || hasRealD1);
+
+  return {
+    main: "./build/sites-worker.ts",
+    compatibility_flags: ["nodejs_compat"],
+    d1_databases: includeD1
+      ? [
+          {
+            binding: d1,
+            database_name: "site-creator-d1",
+            database_id: d1DatabaseId || SITE_CREATOR_PLACEHOLDER_DATABASE_ID,
+          },
+        ]
+      : [],
+    r2_buckets: r2
+      ? [
+          {
+            binding: r2,
+            bucket_name: "site-creator-r2",
+          },
+        ]
+      : [],
+  };
+}
 
 export default defineConfig(async ({ command }) => {
   // Use Miniflare's local Request.cf placeholder unless fetching is requested.
@@ -68,7 +79,7 @@ export default defineConfig(async ({ command }) => {
         viteEnvironment: { name: "rsc", childEnvironments: ["ssr"] },
         inspectorPort: false,
         config: {
-          ...localBindingConfig,
+          ...getBindingConfig(command),
           ...(command === "serve"
             ? {
                 services: [

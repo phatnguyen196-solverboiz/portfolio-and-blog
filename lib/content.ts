@@ -8,22 +8,36 @@ export { safeList, postPath } from "./types";
 type Admin = typeof admins.$inferSelect;
 
 export async function publishedPosts(kind: Kind) {
-  return getDb().select().from(posts)
-    .where(and(eq(posts.kind, kind), eq(posts.status, "published")))
-    .orderBy(desc(posts.createdAt));
+  try {
+    return await getDb().select().from(posts)
+      .where(and(eq(posts.kind, kind), eq(posts.status, "published")))
+      .orderBy(desc(posts.createdAt));
+  } catch (error) {
+    console.warn("D1 database not available, returning empty list:", error);
+    return [];
+  }
 }
 
 export async function publishedPost(kind: Kind, slug: string) {
-  const rows = await getDb().select().from(posts)
-    .where(and(eq(posts.kind, kind), eq(posts.slug, slug), eq(posts.status, "published"))).limit(1);
-  return rows[0] ?? null;
+  try {
+    const rows = await getDb().select().from(posts)
+      .where(and(eq(posts.kind, kind), eq(posts.slug, slug), eq(posts.status, "published"))).limit(1);
+    return rows[0] ?? null;
+  } catch (error) {
+    console.warn("D1 database not available, returning null:", error);
+    return null;
+  }
 }
 
 export async function adminState(): Promise<{ user: ChatGPTUser | null; owner: Admin | null; isAdmin: boolean }> {
-  const user = await getChatGPTUser();
-  if (!user) return { user: null, owner: null, isAdmin: false };
-  const [owner] = await getDb().select().from(admins).where(eq(admins.id, "owner")).limit(1);
-  return { user, owner: owner ?? null, isAdmin: owner?.userId === user.userId };
+  try {
+    const user = await getChatGPTUser();
+    if (!user) return { user: null, owner: null, isAdmin: false };
+    const [owner] = await getDb().select().from(admins).where(eq(admins.id, "owner")).limit(1);
+    return { user, owner: owner ?? null, isAdmin: owner?.userId === user.userId };
+  } catch {
+    return { user: null, owner: null, isAdmin: false };
+  }
 }
 
 
