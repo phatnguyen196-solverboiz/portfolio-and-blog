@@ -3,7 +3,7 @@
 import { useState, useMemo } from "react";
 import Link from "next/link";
 import { Bi } from "./language-switch";
-import type { Post } from "@/lib/content";
+import type { Post } from "@/lib/types";
 import { Github } from "./contact-widget";
 
 function safeList(value: string): string[] {

@@ -3,7 +3,7 @@
 import { useState, useMemo } from "react";
 import Link from "next/link";
 import { Bi } from "./language-switch";
-import { postPath, safeList, type Post } from "@/lib/content";
+import { postPath, safeList, type Post } from "@/lib/types";
 import {
   Search,
   Calendar,

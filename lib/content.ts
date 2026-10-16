@@ -3,9 +3,8 @@ import { getDb } from "@/db";
 import { admins, posts } from "@/db/schema";
 import { getChatGPTUser, type ChatGPTUser } from "@/app/chatgpt-auth";
 
-export type Kind = "project" | "blog";
-export type Status = "draft" | "published";
-export type Post = typeof posts.$inferSelect;
+export type { Kind, Status, Post } from "./types";
+export { safeList, postPath } from "./types";
 type Admin = typeof admins.$inferSelect;
 
 export async function publishedPosts(kind: Kind) {
@@ -27,16 +26,6 @@ export async function adminState(): Promise<{ user: ChatGPTUser | null; owner: A
   return { user, owner: owner ?? null, isAdmin: owner?.userId === user.userId };
 }
 
-export function safeList(value: string): string[] {
-  try {
-    const list = JSON.parse(value);
-    return Array.isArray(list) ? list.filter((item): item is string => typeof item === "string") : [];
-  } catch { return []; }
-}
-
-export function postPath(post: Pick<Post, "kind" | "slug">) {
-  return `/${post.kind === "blog" ? "blog" : "projects"}/${post.slug}`;
-}
 
 export function validatePost(input: unknown) {
   if (!input || typeof input !== "object") throw new Error("Invalid post.");

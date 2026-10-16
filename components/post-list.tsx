@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { Bi } from "./language-switch";
-import { postPath, safeList, type Post } from "@/lib/content";
+import { postPath, safeList, type Post } from "@/lib/types";
 
 export function PostList({ items }: { items: Post[] }) {
   return (

@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { Bi } from "./language-switch";
-import { safeList, type Post } from "@/lib/content";
+import { safeList, type Post } from "@/lib/types";
 
 export function PostDetail({ post }: { post: Post }) {
   const images = safeList(post.images);
