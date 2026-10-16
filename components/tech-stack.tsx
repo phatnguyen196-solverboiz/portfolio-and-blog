@@ -6,13 +6,12 @@ import {
   Cpu,
   Layers,
   Sparkles,
-  Compass,
-  Activity,
 } from "lucide-react";
 import { Bi } from "./language-switch";
 
 export interface SkillItem {
   name: string;
+  nameVi?: string;
   badge?: string;
   badgeVi?: string;
   highlight?: boolean;
@@ -58,10 +57,34 @@ export const SKILL_CATEGORIES: SkillCategory[] = [
     titleVi: "Phần cứng, Thiết bị đo & Nhúng IoT",
     icon: <Cpu className="skills-category-icon" size={16} />,
     skills: [
-      { name: "Dao động ký (Oscilloscope)", badge: "Measurement", badgeVi: "Đo kiểm tín hiệu", highlight: true },
-      { name: "Vi điều khiển (MCU)", badge: "Firmware", badgeVi: "Lập trình vi điều khiển", highlight: true },
-      { name: "Hệ thống nhúng (Embedded)", badge: "C/C++", badgeVi: "Hệ thống nhúng" },
-      { name: "Cảm biến & IoT", badge: "Hardware", badgeVi: "Thiết bị & Cảm biến", highlight: true },
+      {
+        name: "Oscilloscope",
+        nameVi: "Dao động ký (Oscilloscope)",
+        badge: "Measurement",
+        badgeVi: "Đo kiểm tín hiệu",
+        highlight: true,
+      },
+      {
+        name: "Microcontrollers (MCU)",
+        nameVi: "Vi điều khiển (MCU)",
+        badge: "Firmware",
+        badgeVi: "Lập trình vi điều khiển",
+        highlight: true,
+      },
+      {
+        name: "Embedded Systems",
+        nameVi: "Hệ thống nhúng (Embedded)",
+        badge: "C/C++",
+        badgeVi: "Hệ thống nhúng",
+        highlight: true,
+      },
+      {
+        name: "Sensors & IoT",
+        nameVi: "Cảm biến & IoT",
+        badge: "Hardware",
+        badgeVi: "Thiết bị & Cảm biến",
+        highlight: true,
+      },
     ],
   },
 ];
@@ -86,7 +109,7 @@ export function TechStack({
 
   if (compact) {
     const highlightedSkills = SKILL_CATEGORIES.flatMap((c) =>
-      c.skills.filter((s) => s.highlight || ["Python", "MATLAB", "C++", "KiCad", "OriginLab", "FreeCAD", "Dao động ký (Oscilloscope)", "Vi điều khiển (MCU)"].includes(s.name))
+      c.skills.filter((s) => s.highlight || ["Python", "MATLAB", "C++", "KiCad", "OriginLab", "FreeCAD", "Oscilloscope", "Microcontrollers (MCU)"].includes(s.name))
     );
 
     return (
@@ -94,7 +117,9 @@ export function TechStack({
         {highlightedSkills.map((skill) => (
           <div key={skill.name} className="skill-pill" title={skill.name}>
             <Sparkles className="skill-icon" size={14} style={{ color: "var(--accent-ink)" }} />
-            <span>{skill.name}</span>
+            <span>
+              <Bi en={skill.name} vi={skill.nameVi || skill.name} />
+            </span>
             {skill.badge && (
               <span className="badge badge-sm badge-accent" style={{ marginLeft: "auto", fontSize: 9 }}>
                 <Bi en={skill.badge} vi={skill.badgeVi || skill.badge} />
@@ -144,7 +169,9 @@ export function TechStack({
             <div style={{ display: "flex", flexWrap: "wrap", gap: 8 }}>
               {cat.skills.map((skill) => (
                 <div key={skill.name} className="skill-pill" style={{ fontSize: 12.5 }}>
-                  <span>{skill.name}</span>
+                  <span>
+                    <Bi en={skill.name} vi={skill.nameVi || skill.name} />
+                  </span>
                   {skill.badge && (
                     <span className="badge badge-sm badge-outline" style={{ fontSize: 9 }}>
                       <Bi en={skill.badge} vi={skill.badgeVi || skill.badge} />

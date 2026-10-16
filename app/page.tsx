@@ -2,8 +2,9 @@ import Link from "next/link";
 import { Bi } from "@/components/language-switch";
 import { SiteShell } from "@/components/site-shell";
 import { TechStack } from "@/components/tech-stack";
+import { HeroPortrait } from "@/components/hero-portrait";
 import { CopyEmailButton } from "@/components/contact-widget";
-import { ArrowRight, Sparkles, Cpu, Layers } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 
 const destinations = [
   {
@@ -57,8 +58,12 @@ export default function Home() {
   return (
     <SiteShell>
       <div className="wrap">
-        {/* HERO SECTION */}
-        <section className="home-hero" aria-labelledby="home-title">
+        {/* HERO TOP ROW: TITLE & PROFILE PHOTO SLOT */}
+        <section
+          className="home-hero"
+          aria-labelledby="home-title"
+          style={{ minHeight: "auto", paddingBottom: 20 }}
+        >
           <div>
             {/* Live Availability Status Pill */}
             <div
@@ -96,119 +101,45 @@ export default function Home() {
             </h1>
           </div>
 
-          <div className="hero-aside animate-fade-in-up" style={{ animationDelay: "0.4s" }}>
-            <p>
-              <Bi
-                en="Undergraduate student in Engineering Physics at HCMUS (GPA 3.08 / 4.0). Passionate about self-directed learning, scientific computing, numerical simulations (Python, MATLAB, C++), PCB design (KiCad), 3D modeling (FreeCAD), and embedded microcontrollers & IoT."
-                vi="Sinh viên ngành Vật lý Kỹ thuật tại Trường ĐH Khoa học Tự nhiên - ĐHQG TP.HCM (GPA 3.08 / 4.0). Đam mê tự học, nghiên cứu khoa học, mô phỏng số & tính toán khoa học (Python, MATLAB, C++), thiết kế mạch (KiCad), mô hình 3D (FreeCAD) và thực nghiệm vi điều khiển / nhúng IoT."
-              />
-            </p>
-
-            <div style={{ display: "flex", flexWrap: "wrap", gap: 12, alignItems: "center" }}>
-              <Link className="button button-primary" href="/projects">
-                <Bi en="View Selected Work" vi="Xem dự án chọn lọc" />
-                <span aria-hidden="true">↗</span>
-              </Link>
-              <Link className="button button-secondary" href="/contact">
-                <Bi en="Get in Touch" vi="Liên hệ trao đổi" />
-              </Link>
-              <CopyEmailButton />
-            </div>
-          </div>
+          {/* DEDICATED PHOTO / AVATAR SLOT ON THE RIGHT */}
+          <HeroPortrait />
         </section>
 
-        {/* FEATURED WORK SPOTLIGHT */}
+        {/* HERO NARRATIVE & CTAS (TRẢI RỘNG BÊN DƯỚI TIÊU ĐỀ VÀ ẢNH) */}
         <section
-          style={{ paddingTop: 64, paddingBottom: 64, borderTop: "1px solid var(--line)" }}
-          aria-labelledby="featured-work-heading"
+          className="hero-narrative-block animate-fade-in-up"
+          aria-label="Personal introduction and primary actions"
+          style={{
+            animationDelay: "0.4s",
+            paddingTop: 32,
+            paddingBottom: 54,
+            borderBottom: "1px solid var(--line)",
+          }}
         >
-          <div
+          <p
             style={{
-              display: "flex",
-              justifyContent: "space-between",
-              alignItems: "flex-end",
-              marginBottom: 36,
-              flexWrap: "wrap",
-              gap: 16,
+              fontSize: "clamp(15px, 2vw, 17px)",
+              lineHeight: 1.85,
+              color: "rgba(232, 230, 227, 0.85)",
+              maxWidth: 880,
+              margin: "0 0 28px",
             }}
-            className="animate-fade-in-up"
           >
-            <div>
-              <p className="eyebrow" style={{ marginBottom: 8 }}>
-                <Bi en="Proof of Work" vi="Sản phẩm & Nghiên cứu" />
-              </p>
-              <h2
-                id="featured-work-heading"
-                className="serif"
-                style={{ fontSize: "clamp(30px, 4vw, 44px)", margin: 0, letterSpacing: "-0.03em" }}
-              >
-                <Bi en="Selected Engineering Work." vi="Dự án & Nghiên cứu Chọn lọc." />
-              </h2>
-            </div>
-            <Link
-              href="/projects"
-              className="post-more"
-              style={{ fontSize: 13, display: "inline-flex", alignItems: "center", gap: 6 }}
-            >
-              <Bi en="View all projects & case studies" vi="Xem tất cả dự án & nghiên cứu" />
-              <ArrowRight size={14} />
+            <Bi
+              en="Undergraduate student in Engineering Physics at HCMUS (GPA 3.08 / 4.0). Passionate about self-directed learning, scientific computing, numerical simulations (Python, MATLAB, C++), PCB design (KiCad), 3D modeling (FreeCAD), and embedded microcontrollers & IoT."
+              vi="Sinh viên ngành Vật lý Kỹ thuật tại Trường ĐH Khoa học Tự nhiên - ĐHQG TP.HCM (GPA 3.08 / 4.0). Đam mê tự học, nghiên cứu khoa học, mô phỏng số & tính toán khoa học (Python, MATLAB, C++), thiết kế mạch (KiCad), mô hình 3D (FreeCAD) và thực nghiệm vi điều khiển / nhúng IoT."
+            />
+          </p>
+
+          <div style={{ display: "flex", flexWrap: "wrap", gap: 14, alignItems: "center" }}>
+            <Link className="button button-primary" href="/about">
+              <Bi en="View Background & CV" vi="Xem Nền tảng & CV" />
+              <span aria-hidden="true">↗</span>
             </Link>
-          </div>
-
-          {/* Clean Showcase Preparation Card */}
-          <div
-            className="glass-card animate-fade-in-up"
-            style={{
-              padding: "48px 32px",
-              textAlign: "center",
-              borderRadius: 16,
-              background: "radial-gradient(ellipse at top, rgba(16, 185, 129, 0.08) 0%, rgba(20, 20, 25, 0.6) 70%)",
-              border: "1px dashed rgba(255, 255, 255, 0.15)",
-            }}
-          >
-            <span
-              className="eyebrow"
-              style={{
-                padding: "4px 12px",
-                borderRadius: 20,
-                background: "rgba(16, 185, 129, 0.1)",
-                border: "1px solid rgba(16, 185, 129, 0.25)",
-                color: "#34d399",
-                display: "inline-block",
-                marginBottom: 16,
-              }}
-            >
-              <Bi en="Numerical Simulations · KiCad PCB · Embedded Systems" vi="Mô phỏng số · Mạch KiCad · Hệ thống nhúng" />
-            </span>
-            <h3 className="serif" style={{ fontSize: "26px", margin: "0 0 12px", color: "var(--ink)" }}>
-              <Bi
-                en="Projects & Case Studies Currently in Preparation."
-                vi="Dự án & Đề tài Nghiên cứu Đang Chuẩn bị Đăng tải."
-              />
-            </h3>
-            <p
-              className="muted"
-              style={{
-                fontSize: "14px",
-                lineHeight: 1.75,
-                maxWidth: 620,
-                margin: "0 auto 28px",
-              }}
-            >
-              <Bi
-                en="Numerical physics models (Python, MATLAB), circuit schematics & PCB layouts (KiCad), 3D mechanical models (FreeCAD), and embedded microcontroller / IoT experiments are currently being compiled. You can manage and publish projects anytime via the Admin Studio."
-                vi="Các mô hình mô phỏng vật lý số (Python, MATLAB), sơ đồ nguyên lý & mạch in PCB (KiCad), mô hình 3D (FreeCAD) và thực nghiệm vi điều khiển / nhúng IoT đang được hoàn thiện để đăng tải. Bạn có thể tự thêm hoặc chỉnh sửa dự án qua trang Quản trị."
-              />
-            </p>
-
-            <div style={{ display: "flex", justifyContent: "center", gap: 12, flexWrap: "wrap" }}>
-              <Link href="/projects" className="button button-primary">
-                <Bi en="Explore Projects Page" vi="Xem Trang Dự án" />
-              </Link>
-              <Link href="/admin" className="button button-outline">
-                <Bi en="Open Admin Studio" vi="Mở Trang Quản trị (/admin)" />
-              </Link>
-            </div>
+            <Link className="button button-secondary" href="/contact">
+              <Bi en="Get in Touch" vi="Liên hệ trao đổi" />
+            </Link>
+            <CopyEmailButton />
           </div>
         </section>
 
@@ -268,86 +199,6 @@ export default function Home() {
               </span>
             </Link>
           ))}
-        </section>
-
-        {/* TECHNICAL BLOG PREVIEW */}
-        <section
-          style={{ paddingTop: 64, paddingBottom: 64, borderTop: "1px solid var(--line)" }}
-          aria-labelledby="writing-preview-heading"
-        >
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "space-between",
-              alignItems: "flex-end",
-              marginBottom: 36,
-              flexWrap: "wrap",
-              gap: 16,
-            }}
-            className="animate-fade-in-up"
-          >
-            <div>
-              <p className="eyebrow" style={{ marginBottom: 8 }}>
-                <Bi en="Engineering Notes" vi="Ghi chép kỹ thuật" />
-              </p>
-              <h2
-                id="writing-preview-heading"
-                className="serif"
-                style={{ fontSize: "clamp(30px, 4vw, 44px)", margin: 0, letterSpacing: "-0.03em" }}
-              >
-                <Bi en="Recent Technical Blog." vi="Blog Kỹ thuật mới nhất." />
-              </h2>
-            </div>
-            <Link
-              href="/blog"
-              className="post-more"
-              style={{ fontSize: 13, display: "inline-flex", alignItems: "center", gap: 6 }}
-            >
-              <Bi en="View all articles & deep-dives" vi="Xem tất cả bài viết & phân tích" />
-              <ArrowRight size={14} />
-            </Link>
-          </div>
-
-          {/* Clean Blog Preparation State */}
-          <div
-            className="glass-card animate-fade-in-up"
-            style={{
-              padding: "40px 32px",
-              textAlign: "center",
-              borderRadius: 16,
-              background: "rgba(255, 255, 255, 0.02)",
-              border: "1px dashed rgba(255, 255, 255, 0.12)",
-            }}
-          >
-            <h3 className="serif" style={{ fontSize: "22px", margin: "0 0 10px", color: "var(--ink)" }}>
-              <Bi
-                en="Technical Articles & Research Notes in Preparation."
-                vi="Ghi chép Chuyên môn & Bài viết Đang Chuẩn bị."
-              />
-            </h3>
-            <p
-              className="muted"
-              style={{
-                fontSize: "14px",
-                lineHeight: 1.7,
-                maxWidth: 580,
-                margin: "0 auto 24px",
-              }}
-            >
-              <Bi
-                en="Deep-dives on computational simulation methods, MATLAB/Python physical models, KiCad schematic layout practices, and embedded firmware experiments will be published here. You can write and publish posts anytime via the Admin Studio."
-                vi="Các bài viết chuyên sâu về phương pháp mô phỏng số, mô hình toán lý trên MATLAB/Python, kinh nghiệm thiết kế mạch KiCad và thực nghiệm firmware nhúng sẽ được đăng tải tại đây. Bạn có thể tự viết bài qua trang Quản trị."
-              />
-            </p>
-            <div style={{ display: "flex", justifyContent: "center", gap: 12, flexWrap: "wrap" }}>
-              <Link href="/blog" className="button button-primary">
-                <Bi en="Open Technical Blog" vi="Xem Blog Kỹ thuật" />
-              </Link>
-              <Link href="/admin" className="button button-outline">
-                <Bi en="Open Admin Studio" vi="Mở Trang Quản trị (/admin)" />
-              </Link>
-            </div>
-          </div>
         </section>
 
         {/* CONNECT CTA BANNER */}
